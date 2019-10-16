@@ -11,6 +11,7 @@ class LogIn extends Component {
       email: localStorage.getItem('signIn_email'),
       password: localStorage.getItem('signIn_password')
     }
+    
 
   }
 
