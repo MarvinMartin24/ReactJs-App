@@ -6,9 +6,6 @@ import SignIn from "./components/SignIn.js"
 import LogIn from "./components/LogIn.js"
 
 
-import UserData from "./database/users.js"
-
-
 class App extends Component {
 
   state = {
