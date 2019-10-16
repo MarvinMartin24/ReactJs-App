@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../services/apiService.js';
+import Profile from './Profile.js';
+
 
 
 class LogIn extends Component {
@@ -39,7 +41,7 @@ class LogIn extends Component {
         const user = response.result;
         console.log(user);
         alert("logged in !");
-        this.props.history.push("/");
+        this.props.history.push("/Profile");
 
     } else{
         alert(response.error);

@@ -4,22 +4,10 @@ import { BrowserRouter, Route } from "react-router-dom"
 import NavBar from "./components/NavBar.js"
 import SignUp from "./components/SignUp.js"
 import LogIn from "./components/LogIn.js"
+import Profile from "./components/Profile.js"
 
 
 class App extends Component {
-
-  state = {
-  };
-
-  verifyUser = user => {
-
-  };
-
-
-
-  componentDidMount() {
-    console.log("le composant fonctionne")
-  }
 
   render() {
     return (
@@ -28,6 +16,7 @@ class App extends Component {
           <NavBar />
           <Route exact path="/SignUp" component ={SignUp} />
           <Route exact path="/LogIn" component ={LogIn} />
+          <Route exact path="/Profile" component ={Profile} />
         </div>
       </BrowserRouter>
     );

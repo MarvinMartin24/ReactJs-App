@@ -31,7 +31,7 @@ export function authenticate(email, password) {
 
             // LogIn from SignIn - LocalStorage
             else {
-              return success(localUser); // To be modified
+              return success(localUser); 
             }
         }
     }

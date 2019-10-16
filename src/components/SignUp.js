@@ -6,6 +6,7 @@ class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: Math.random(),
       firstName: '',
       lastName: '',
       email: '',
