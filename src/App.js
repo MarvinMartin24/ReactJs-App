@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from "react-router-dom"
 
 import NavBar from "./components/NavBar.js"
-import SignIn from "./components/SignIn.js"
+import SignUp from "./components/SignUp.js"
 import LogIn from "./components/LogIn.js"
 
 
@@ -20,14 +20,13 @@ class App extends Component {
   componentDidMount() {
     console.log("le composant fonctionne")
   }
-    //<SignIn verifyUser ={this.verifyUser}/>
 
   render() {
     return (
       <BrowserRouter>
         <div className="App">
           <NavBar />
-          <Route exact path="/SignIn" component ={SignIn} />
+          <Route exact path="/SignUp" component ={SignUp} />
           <Route exact path="/LogIn" component ={LogIn} />
         </div>
       </BrowserRouter>

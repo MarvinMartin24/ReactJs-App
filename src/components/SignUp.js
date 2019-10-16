@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
 
-class SignIn extends Component {
+class SignUp extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      signIn_email: '',
-      signIn_password: ''
+      signUp_email: '',
+      signUp_password: ''
     }
 
   }
@@ -23,8 +23,8 @@ class SignIn extends Component {
 
   submit = () => {
     const { email, password } = this.state;
-    localStorage.setItem('signIn_email', email);
-    localStorage.setItem('signIn_password', password);
+    localStorage.setItem('signUp_email', email);
+    localStorage.setItem('signUp_password', password);
     this.props.history.push("/LogIn");
   }
 
@@ -35,10 +35,10 @@ class SignIn extends Component {
         <br/>
         <input id="password" type="password" onChange={this.handleChange}/>
         <br/>
-        <button onClick={this.submit}>Login</button>
+        <button onClick={this.submit}>Create Account</button>
       </div>
     );
   }
 
 }
-export default SignIn;
+export default SignUp;

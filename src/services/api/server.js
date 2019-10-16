@@ -16,8 +16,8 @@ function failure(error) {
 
 export function authenticate(email, password) {
     // wait few ms to be realistic
-    const localEmail = localStorage.getItem('signIn_email');
-    const localPassword = localStorage.getItem('signIn_password');
+    const localEmail = localStorage.getItem('signUp_email');
+    const localPassword = localStorage.getItem('signUp_password');
 
     for (let user of users) {
 

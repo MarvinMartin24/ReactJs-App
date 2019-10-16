@@ -8,10 +8,10 @@ class LogIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: localStorage.getItem('signIn_email'),
-      password: localStorage.getItem('signIn_password')
+      email: localStorage.getItem('signUp_email'),
+      password: localStorage.getItem('signUp_password')
     }
-    
+
 
   }
 
@@ -29,6 +29,8 @@ class LogIn extends Component {
         const user = response.result;
         console.log(user);
         alert("logged in !");
+        this.props.history.push("/");
+
     } else{
         alert(response.error);
     }

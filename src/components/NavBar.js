@@ -13,7 +13,7 @@ const NavBar = () => {
       <br />
       <a href="/LogIn"> Log In </a>
       <br />
-      <a href="/SignIn"> Sign In </a>
+      <a href="/SignUp"> Sign Up </a>
     </div>
   );
 };
