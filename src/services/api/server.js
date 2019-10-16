@@ -21,7 +21,7 @@ export function authenticate(email, password) {
 
     for (let user of users) {
 
-        if (user.email === email && user.password === password || localEmail === email && localPassword === password) {
+        if ((user.email === email && user.password === password) || (localEmail === email && localPassword === password)) {
 
             // LogIn from user api
             if (user.email === email && user.password === password){
