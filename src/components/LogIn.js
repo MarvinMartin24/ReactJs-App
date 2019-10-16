@@ -39,11 +39,15 @@ class LogIn extends Component {
   render() {
     return (
       <div >
+      <form >
+        <label>Email:</label>
         <input id="email" type="text" value={this.state.email} onChange={this.handleChange}/>
         <br/>
+        <label>Password:</label>
         <input id="password" type="password" value={this.state.password} onChange={this.handleChange}/>
         <br/>
         <button onClick={this.login}>Login</button>
+      </form>
       </div>
     );
   }
