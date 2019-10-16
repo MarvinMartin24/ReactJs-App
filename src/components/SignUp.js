@@ -6,10 +6,10 @@ class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      signUp_firstName: '',
-      signUp_lastName: '',
-      signUp_email: '',
-      signUp_password: ''
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: ''
     }
 
   }
@@ -24,18 +24,15 @@ class SignUp extends Component {
 
 
   submit = () => {
-    const { firstName, lastName, email, password } = this.state;
-    localStorage.setItem('signUp_firstName', firstName);
-    localStorage.setItem('signUp_lastName', lastName);
-    localStorage.setItem('signUp_email', email);
-    localStorage.setItem('signUp_password', password);
+    const signUpUser = this.state;
+    localStorage.setItem('signUpUser', JSON.stringify(signUpUser));
     this.props.history.push("/LogIn");
   }
 
   render() {
     return (
       <div >
-      <form >
+      <form onSubmit={this.submit}>
         <label>First Name:</label>
         <input id="firstName" type="text" onChange={this.handleChange}/>
 
@@ -56,7 +53,7 @@ class SignUp extends Component {
         <input id="password" type="password" onChange={this.handleChange}/>
 
         <br/>
-        <button onClick={this.submit}>Create Account</button>
+        <button >Create Account</button>
       </form>
       </div>
     );

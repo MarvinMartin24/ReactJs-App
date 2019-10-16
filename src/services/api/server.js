@@ -1,5 +1,6 @@
 import {users} from './json/users.js';
 
+
 function success(result) {
     return {
         status: "success",
@@ -15,13 +16,13 @@ function failure(error) {
 }
 
 export function authenticate(email, password) {
-    // wait few ms to be realistic
-    const localEmail = localStorage.getItem('signUp_email');
-    const localPassword = localStorage.getItem('signUp_password');
 
+    const localUser = JSON.parse(localStorage.getItem('signUpUser'));
+
+    // wait few ms to be realistic
     for (let user of users) {
 
-        if ((user.email === email && user.password === password) || (localEmail === email && localPassword === password)) {
+        if ((user.email === email && user.password === password) || (localUser.email === email && localUser.password === password)) {
 
             // LogIn from user api
             if (user.email === email && user.password === password){
@@ -30,7 +31,7 @@ export function authenticate(email, password) {
 
             // LogIn from SignIn - LocalStorage
             else {
-              return success(localEmail); // To be modified
+              return success(localUser); // To be modified
             }
         }
     }

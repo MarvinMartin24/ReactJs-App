@@ -2,18 +2,28 @@ import React, { Component } from 'react';
 import * as api from '../services/apiService.js';
 
 
-
 class LogIn extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      email: localStorage.getItem('signUp_email'),
-      password: localStorage.getItem('signUp_password')
+      email: '',
+      password: ''
     }
 
 
   }
+
+  componentWillMount(){
+      const localUser = JSON.parse(localStorage.getItem('signUpUser'));
+      if (localUser) {
+        this.setState({
+          email: localUser.email,
+          password: localUser.password
+        });
+      }
+
+    }
 
 
   handleChange = (event) => {
@@ -39,14 +49,14 @@ class LogIn extends Component {
   render() {
     return (
       <div >
-      <form >
+      <form onSubmit={this.login}>
         <label>Email:</label>
         <input id="email" type="text" value={this.state.email} onChange={this.handleChange}/>
         <br/>
         <label>Password:</label>
         <input id="password" type="password" value={this.state.password} onChange={this.handleChange}/>
         <br/>
-        <button onClick={this.login}>Login</button>
+        <button >Login</button>
       </form>
       </div>
     );
