@@ -36,14 +36,26 @@ class LogIn extends Component {
   }
 
   login = () => {
+    // Verification function
     const response = api.authenticate(this.state.email, this.state.password);
+
+    // Verification sucessed
     if(response.status === "success"){
+
         const user = response.result;
+        localStorage.setItem('userId', JSON.stringify(user.id));
         console.log(user);
+
+        // Spam message
         alert("logged in !");
+
+        // Go to User Profile
         this.props.history.push("/Profile");
 
-    } else{
+    }
+    // Verification failed
+    else{
+        // Spam message
         alert(response.error);
     }
   }

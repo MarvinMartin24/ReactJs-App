@@ -31,10 +31,17 @@ export function authenticate(email, password) {
 
             // LogIn from SignIn - LocalStorage
             else {
-              return success(localUser); 
+              return success(localUser);
             }
         }
     }
 
     return failure("user not found, or wrong password");
 }
+
+export function getUser(id) {
+  let object = users.find(user => user.id === id);
+  return object;
+}
+
+//export function getCard(id) {}
