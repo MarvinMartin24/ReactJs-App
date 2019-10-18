@@ -1,4 +1,5 @@
 import {users} from './json/users.js';
+const localUser = JSON.parse(localStorage.getItem('user_local'));
 
 
 function success(result) {
@@ -12,12 +13,11 @@ function failure(error) {
     return {
         status: "failure",
         error: error
+
     }
 }
 
 export function authenticate(email, password) {
-
-    const localUser = JSON.parse(localStorage.getItem('signUpUser'));
 
     // wait few ms to be realistic
     for (let user of users) {

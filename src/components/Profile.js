@@ -20,15 +20,13 @@ class Profile extends Component {
 
   }
 
-  componentWillMount(){
+  componentDidMount() {
+      const userLocal = JSON.parse(localStorage.getItem('user_local'));
+      let user = Object.assign({}, userLocal);
 
-      this.setState(prevState => {
-
-        const userId = JSON.parse(localStorage.getItem('userId'));
-        let user = Object.assign({}, prevState.user);      // creating copy of state variable user
-        user = api.getUser(userId);                        // update the name property, assign a new value
-        return { user };                                 // return new object user object
-      })
+      this.setState({
+          user,
+      });
     }
 
 

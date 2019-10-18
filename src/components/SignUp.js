@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 class SignUp extends Component {
 
-  constructor(props) {
+    constructor(props) {
     super(props);
     this.state = {
       id: Math.random(),
@@ -26,7 +26,7 @@ class SignUp extends Component {
 
   submit = () => {
     const signUpUser = this.state;
-    localStorage.setItem('signUpUser', JSON.stringify(signUpUser));
+    localStorage.setItem('user_local', JSON.stringify(signUpUser));
     this.props.history.push("/LogIn");
   }
 

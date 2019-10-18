@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
 import * as api from '../services/apiService.js';
-import Profile from './Profile.js';
 
 
 
 class LogIn extends Component {
 
-  constructor(props) {
+    constructor(props) {
     super(props);
     this.state = {
       email: '',
       password: ''
     }
-
-
   }
 
   componentWillMount(){
-      const localUser = JSON.parse(localStorage.getItem('signUpUser'));
+      const localUser = JSON.parse(localStorage.getItem('user_local'));
       if (localUser) {
         this.setState({
           email: localUser.email,
@@ -43,7 +40,7 @@ class LogIn extends Component {
     if(response.status === "success"){
 
         const user = response.result;
-        localStorage.setItem('userId', JSON.stringify(user.id));
+        localStorage.setItem('user_local', JSON.stringify(user));
         console.log(user);
 
         // Spam message
