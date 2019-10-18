@@ -13,7 +13,7 @@ class LogIn extends Component {
     }
   }
 
-  componentWillMount(){
+  componentDidMount(){
       const localUser = JSON.parse(localStorage.getItem('user_local'));
       if (localUser) {
         this.setState({

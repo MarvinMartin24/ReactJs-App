@@ -10,7 +10,7 @@ class Profile extends Component {
     this.state = {
       user: {
         id: '',
-        firstName: 'helo',
+        firstName: '',
         lastName: '',
         email: '',
         password: ''
