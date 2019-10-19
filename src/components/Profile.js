@@ -38,10 +38,6 @@ class Profile extends Component {
     }
 
 
-  show(){
-    console.log(this.state);
-  }
-
   render() {
     return (
       <div>

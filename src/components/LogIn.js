@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import * as api from '../services/apiService.js';
 
 
-
 class LogIn extends Component {
 
     constructor(props) {
@@ -10,11 +9,14 @@ class LogIn extends Component {
     this.state = {
       email: '',
       password: ''
-    }
+      }
   }
+
+
 
   componentDidMount(){
       const localUser = JSON.parse(localStorage.getItem('user_local'));
+
       if (localUser) {
         this.setState({
           email: localUser.email,
@@ -40,11 +42,18 @@ class LogIn extends Component {
     if(response.status === "success"){
 
         const user = response.result;
+
         localStorage.setItem('user_local', JSON.stringify(user));
-        console.log(user);
+
+
 
         // Spam message
         alert("logged in !");
+
+        localStorage.setItem("view", JSON.stringify("NavBar2"));
+        this.props.view();
+
+        console.log(this.props);
 
         // Go to User Profile
         this.props.history.push("/Profile");
@@ -52,6 +61,7 @@ class LogIn extends Component {
     }
     // Verification failed
     else{
+        localStorage.setItem("view", JSON.stringify("NavBar"));
         // Spam message
         alert(response.error);
     }
