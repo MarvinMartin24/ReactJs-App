@@ -11,6 +11,8 @@ import Profile from "./components/Profile.js"
 
 import Modify from "./components/Modify.js"
 import Transaction from "./components/Transaction.js"
+import LogOut from "./components/LogOut.js"
+
 
 
 
@@ -44,6 +46,17 @@ class App extends Component {
           }
       }
 
+      onLoggedOut = () => {
+          const localView = JSON.parse(localStorage.getItem('view'));
+
+          if (localView) {
+            this.setState({
+              view: localView
+            });
+          }
+      }
+
+
 
 
   render() {
@@ -67,7 +80,7 @@ class App extends Component {
                   <Route exact path="/Profile" component ={Profile} />
                   <Route exact path="/Modify" component ={Modify}/>
                   <Route exact path="/Transaction" component ={Transaction}/>
-                  <Route exact path="/LogOut" component ={NavBar} />
+                  <Route exact path="/LogOut" render={(props) => <LogOut {...props} view={this.onLoggedOut} />} />
               </BrowserRouter>
           )
       }
