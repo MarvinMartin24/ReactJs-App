@@ -36,17 +36,7 @@ class App extends Component {
         }
       }
 
-      onLoggedIn = () => {
-          const localView = JSON.parse(localStorage.getItem('view'));
-
-          if (localView) {
-            this.setState({
-              view: localView
-            });
-          }
-      }
-
-      onLoggedOut = () => {
+      onChangeView = () => {
           const localView = JSON.parse(localStorage.getItem('view'));
 
           if (localView) {
@@ -67,7 +57,7 @@ class App extends Component {
               <BrowserRouter>
                   <NavBar/>
                   <Route exact path="/SignUp" component ={SignUp}/>
-                  <Route exact path="/LogIn"  render={(props) => <LogIn {...props} view={this.onLoggedIn} />} />
+                  <Route exact path="/LogIn"  render={(props) => <LogIn {...props} view={this.onChangeView} />} />
               </BrowserRouter>
           )
       }
@@ -80,7 +70,7 @@ class App extends Component {
                   <Route exact path="/Profile" component ={Profile} />
                   <Route exact path="/Modify" component ={Modify}/>
                   <Route exact path="/Transaction" component ={Transaction}/>
-                  <Route exact path="/LogOut" render={(props) => <LogOut {...props} view={this.onLoggedOut} />} />
+                  <Route exact path="/LogOut" render={(props) => <LogOut {...props} view={this.onChangeView} />} />
               </BrowserRouter>
           )
       }
