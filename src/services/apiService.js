@@ -4,6 +4,6 @@ export function authenticate(email, password){
     return mock.authenticate(email, password);
 }
 
-export function getUser(id){
-    return mock.getUser(id);
+export function getCard(id){
+    return mock.getCard(id);
 }

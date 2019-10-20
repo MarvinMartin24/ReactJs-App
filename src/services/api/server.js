@@ -1,4 +1,6 @@
 import {users} from './json/users.js';
+import {cards} from './json/cards.js';
+
 
 
 function success(result) {
@@ -40,9 +42,7 @@ export function authenticate(email, password) {
     return failure("user not found, or wrong password");
 }
 
-export function getUser(id) {
-  let object = users.find(user => user.id === id);
-  return object;
+export function getCard(id) {
+    let object = cards.find(user => user.user_id === id);
+    return object;
 }
-
-//export function getCard(id) {}

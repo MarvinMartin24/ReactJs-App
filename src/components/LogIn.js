@@ -48,13 +48,13 @@ class LogIn extends Component {
 
 
 
+
         // Spam message
         alert("logged in !");
 
         localStorage.setItem("view", JSON.stringify("NavBar2"));
         this.props.view();
 
-        console.log(this.props);
 
         // Go to User Profile
         this.props.history.push("/Home");
