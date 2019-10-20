@@ -14,7 +14,7 @@ class NavBar2 extends Component {
           <header className="App-header">
              <img src={logo} className="App-logo" alt="logo" />
           </header>
-          <a href="/Profile"> Home </a>
+          <a href="/Home"> Home </a>
           <br />
           <a href="/Modify"> Modify </a>
           <br />

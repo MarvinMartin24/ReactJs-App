@@ -56,7 +56,7 @@ class LogIn extends Component {
         console.log(this.props);
 
         // Go to User Profile
-        this.props.history.push("/Profile");
+        this.props.history.push("/Home");
 
     }
     // Verification failed

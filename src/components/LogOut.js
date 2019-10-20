@@ -19,7 +19,7 @@ class LogOut extends Component {
     }
 
     stay = () =>{
-        this.props.history.push("/Profile");
+        this.props.history.push("/Home");
     }
 
 

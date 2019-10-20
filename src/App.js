@@ -7,7 +7,6 @@ import NavBar2 from "./components/NavBar2.js"
 
 import SignUp from "./components/SignUp.js"
 import LogIn from "./components/LogIn.js"
-import Profile from "./components/Profile.js"
 
 import Modify from "./components/Modify.js"
 import Transaction from "./components/Transaction.js"
@@ -67,7 +66,6 @@ class App extends Component {
           return(
               <BrowserRouter>
                 <NavBar2/>
-                  <Route exact path="/Profile" component ={Profile} />
                   <Route exact path="/Modify" component ={Modify}/>
                   <Route exact path="/Transaction" component ={Transaction}/>
                   <Route exact path="/LogOut" render={(props) => <LogOut {...props} view={this.onChangeView} />} />
