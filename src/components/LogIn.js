@@ -27,6 +27,7 @@ class LogIn extends Component {
     }
 
 
+
   handleChange = (event) => {
      const input = event.target;
      const value = input.value;
@@ -61,7 +62,7 @@ class LogIn extends Component {
     }
     // Verification failed
     else{
-        localStorage.setItem("view", JSON.stringify("NavBar"));
+
         // Spam message
         alert(response.error);
     }
