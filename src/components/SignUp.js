@@ -7,8 +7,8 @@ class SignUp extends Component {
     super(props);
     this.state = {
       id: Math.random(),
-      firstName: '',
-      lastName: '',
+      first_name: '',
+      last_name: '',
       email: '',
       password: ''
     }
@@ -35,13 +35,13 @@ class SignUp extends Component {
       <div >
       <form onSubmit={this.submit}>
         <label>First Name:</label>
-        <input id="firstName" type="text" onChange={this.handleChange}/>
+        <input id="first_name" type="text" onChange={this.handleChange}/>
 
         <br/>
 
 
         <label>Last Name:</label>
-        <input id="lastName" type="text" onChange={this.handleChange}/>
+        <input id="last_name" type="text" onChange={this.handleChange}/>
 
         <br/>
 
