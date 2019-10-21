@@ -25,7 +25,7 @@ function failure(error) {
 }
 
 function getCard(id) {
-    let object = cards.find(user => user.user_id === id);
+    let object = cards.filter(user => user.user_id === id);
     return object;
 }
 
