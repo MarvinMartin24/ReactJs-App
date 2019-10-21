@@ -73,7 +73,7 @@ class Modify extends Component {
       localStorage.setItem('user_local', JSON.stringify(signUpUser));
 
       const card = this.state.card;
-      localStorage.setItem('card_local', JSON.stringify(card));
+      localStorage.setItem('cards_local', JSON.stringify(card));
     }
 
 
