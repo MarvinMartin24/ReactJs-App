@@ -53,10 +53,6 @@ class LogIn extends Component {
         localStorage.setItem('wallet_local', JSON.stringify(wallet));
 
 
-
-
-
-
         // Spam message
         alert("logged in !");
 

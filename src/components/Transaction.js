@@ -26,49 +26,52 @@ class Transaction extends Component {
             brand:'',
             expired_at:''
         },
-        wallets: {
+        wallet: {
             id: '',
             user_id:'',
-            balance:'3OOOO'
-        },
-        transfer: {
-            id: '',
-            debited_wallet_id:'',
-            credited_wallet_id:'',
-            amount: ''
-        },
-        payIns: {
-            id: '',
-            wallet_id:'',
-            amount:''
-        },
-        payOuts: {
-            id: '',
-            wallet_id:'',
-            amount:''
+            balance:''
         },
         answer: ''
     }
   }
 
-  handleSubmit = (event) => {
+  componentDidMount() {
+      const userLocal = JSON.parse(localStorage.getItem('user_local'));
+      let user = Object.assign({}, userLocal);
+
+      const cardLocal = JSON.parse(localStorage.getItem('cards_local'));
+      let card = Object.assign({}, cardLocal[0]);
+
+      const walletLocal = JSON.parse(localStorage.getItem('wallet_local'));
+      let wallet = Object.assign({}, walletLocal);
+
+
+
+      this.setState({
+          user, card, wallet
+      })
+  }
+
+  changeSection = (event) => {
         this.setState({ answer: event.target.name });
     }
 
 
 
   render() {
+      console.log(this.state);
     return (
       <div>
-          {this.state.answer === "Send" && <Send />}
+        Solde: {this.state.wallet.balance}
+          {this.state.answer === "Send" && <Send walletId={this.state.wallet.id}/>}
           {this.state.answer === "Deposit" && <Deposit />}
           {this.state.answer === "Withdrawal" && <Withdrawal />}
           <br/>
           Go to
           <br/>
-          <button onClick={this.handleSubmit} name="Send">Send</button>
-          <button onClick={this.handleSubmit} name="Deposit">Deposit</button>
-          <button onClick={this.handleSubmit} name="Withdrawal">Withdrawal</button>
+          <button onClick={this.changeSection} name="Send">Send</button>
+          <button onClick={this.changeSection} name="Deposit">Deposit</button>
+          <button onClick={this.changeSection} name="Withdrawal">Withdrawal</button>
 
       </div>
     );

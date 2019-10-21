@@ -24,6 +24,11 @@ function failure(error) {
     }
 }
 
+function getUser(email) {
+    let user = users.find(user => user.email === email);
+    return user;
+}
+
 function getCard(id) {
     let object = cards.filter(user => user.user_id === id);
     return object;
@@ -57,4 +62,15 @@ export function authenticate(email, password) {
     }
 
     return failure("user not found, or wrong password");
+}
+
+export function getWalletIdFromEmail(email){
+    let user = getUser(email);
+    let wallet = wallets.find(wallet => wallet.user_id === user.id);
+    return wallet.id;
+}
+
+export function getWalletFromWalletId(walletId){
+    let wallet = wallets.find(wallet => wallet.id === walletId);
+    return wallet;
 }
