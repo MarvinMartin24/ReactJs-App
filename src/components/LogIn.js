@@ -39,12 +39,17 @@ class LogIn extends Component {
     // Verification function
     const response = api.authenticate(this.state.email, this.state.password);
 
-    // Verification sucessed
-    if(response.status === "success"){
 
-        const user = response.result;
+    // Verification sucessed
+    if(response[0].status === "success"){
+
+        const user = response[0].result;
+        const cards = response[1];
+
 
         localStorage.setItem('user_local', JSON.stringify(user));
+        localStorage.setItem('cards_local', JSON.stringify(cards));
+
 
 
 

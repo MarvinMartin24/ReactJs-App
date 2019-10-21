@@ -9,8 +9,7 @@ class Modify extends Component {
   constructor(props) {
     super(props);
 
-    const userLocal = JSON.parse(localStorage.getItem('user_local'));
-    const cardLocal = api.getCard(userLocal.id);
+
     this.state = {
       user: {
         id: '',
@@ -20,11 +19,11 @@ class Modify extends Component {
         password: ''
     },
     card: {
-        user_id: cardLocal.user_id,
-        id:cardLocal.id,
-        last_4:cardLocal.last_4,
-        brand:cardLocal.brand,
-        expired_at:cardLocal.expired_at
+        user_id: '',
+        id:'',
+        last_4:'',
+        brand:'',
+        expired_at:''
     }
 
     }
@@ -35,13 +34,12 @@ class Modify extends Component {
       const userLocal = JSON.parse(localStorage.getItem('user_local'));
       let user = Object.assign({}, userLocal);
 
-      const cardLocal = JSON.parse(localStorage.getItem('card_local'));
+      const cardLocal = JSON.parse(localStorage.getItem('cards_local'));
       let card = Object.assign({}, cardLocal);
 
 
       this.setState({
-          user,
-          card,
+          user, card,
       });
     }
 
