@@ -14,5 +14,13 @@ export const users = [
     email:"tim.martin@gmail.com",
     password:"marvin",
     is_admin:false
-  }
+},
+{
+  id: "3456",
+  first_name:"Heloise",
+  last_name:"Tribaudeau",
+  email:"helo.tbd@free.com",
+  password:"helo",
+  is_admin:false
+}
 ]

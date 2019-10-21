@@ -25,32 +25,104 @@ class Send extends Component {
   }
 
   handleChangeCredit = (event) => {
-      event.preventDefault();
       this.setState({
           credited_wallet_id: api.getWalletIdFromEmail(event.target.value),
       })
       console.log(this.state);
   }
 
+  isEmailValid = () =>{
+      // Verification sucessed
+      if(this.state.credited_wallet_id.status === "success"){
+          return(true);
+      }
+      // Verification failed
+      else{
 
-  transfer = () => {
+          alert(this.state.credited_wallet_id.error);
+          return(false);
+      }
+    }
+
+  isAmountValid = () =>{
+        // Verification sucessed
+        if(this.state.amount <= this.props.solde){
+            return(true);
+        }
+        // Verification failed
+        else{
+
+            alert("Your solde is too low");
+            return(false);
+        }
+      }
+
+  addToTransfertList = () =>{
       // add to localStorage the transfer
-      let transfer  = this.state;
-      localStorage.setItem('transfer_local', JSON.stringify(transfer));
 
+      var allLocalTransfer = JSON.parse(localStorage.getItem('transfer_local'));
+      if (allLocalTransfer){
+          allLocalTransfer.push(this.state);
+      }
+      else {
+          var allLocalTransfer = []
+          allLocalTransfer.push(this.state);
+      }
+
+      localStorage.setItem('transfer_local', JSON.stringify(allLocalTransfer));
+  }
+
+  addToCreditedWalletList = () =>{
+      // add to localStorage the transfer
+
+      var allLocalCreditedWallet = JSON.parse(localStorage.getItem('credited_wallet'));
+      let creditedWallet = api.getWalletFromWalletId(this.state.credited_wallet_id.result)
+      creditedWallet.balance +=  this.state.amount;
+
+
+      // credited_wallet already exist
+      if (allLocalCreditedWallet){
+          let index = allLocalCreditedWallet.findIndex(wallet => wallet.id === this.state.credited_wallet_id.result);
+
+          if (index > -1){ // credited wallet is in allLocalCreditedWallet
+              allLocalCreditedWallet[index].balance += this.state.amount;
+              allLocalCreditedWallet.splice(index, 1, allLocalCreditedWallet[index]);
+          }
+          else{ // credited wallet is not in allLocalCreditedWallet
+              allLocalCreditedWallet.push(creditedWallet);
+
+          }
+      }
+      // credited_wallet does not exist yet
+      else {
+          var allLocalCreditedWallet = []
+          allLocalCreditedWallet.push(creditedWallet);
+      }
+
+      // Put result in localStorage
+      localStorage.setItem('credited_wallet', JSON.stringify(allLocalCreditedWallet));
+  }
+
+  updateUserLocalBalance = () =>{
       // update in the localStorage the user wallet
       let walletLocal = JSON.parse(localStorage.getItem('wallet_local'));
       walletLocal.balance = walletLocal.balance - this.state.amount;
       localStorage.setItem('wallet_local', JSON.stringify(walletLocal));
+  }
 
-      // create in the localStorage the credit user wallet
-      let creditedWallet = api.getWalletFromWalletId(this.state.credited_wallet_id)
-      creditedWallet.balance = creditedWallet.balance + this.state.amount;
-      localStorage.setItem('credited_wallet', JSON.stringify(creditedWallet));
+
+  transfer = () => {
+      if ((this.isEmailValid() === true) && (this.isAmountValid() === true) ){
+          this.addToTransfertList();
+          this.updateUserLocalBalance();
+          this.addToCreditedWalletList()
+          alert("Transaction done !");
+      }
 
   }
 
   render() {
+    console.log(this.state);
     return (
       <div>
         <form onSubmit={this.transfer}>

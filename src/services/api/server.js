@@ -66,8 +66,14 @@ export function authenticate(email, password) {
 
 export function getWalletIdFromEmail(email){
     let user = getUser(email);
-    let wallet = wallets.find(wallet => wallet.user_id === user.id);
-    return wallet.id;
+    if (user){
+        let wallet = wallets.find(wallet => wallet.user_id === user.id);
+        return success(wallet.id);
+    }
+    else {
+        return failure('Wrong email')
+    }
+
 }
 
 export function getWalletFromWalletId(walletId){

@@ -63,7 +63,7 @@ class Transaction extends Component {
     return (
       <div>
         Solde: {this.state.wallet.balance}
-          {this.state.answer === "Send" && <Send walletId={this.state.wallet.id}/>}
+          {this.state.answer === "Send" && <Send walletId={this.state.wallet.id} solde={this.state.wallet.balance} />}
           {this.state.answer === "Deposit" && <Deposit />}
           {this.state.answer === "Withdrawal" && <Withdrawal />}
           <br/>
