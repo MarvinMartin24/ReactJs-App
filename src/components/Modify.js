@@ -35,7 +35,7 @@ class Modify extends Component {
       let user = Object.assign({}, userLocal);
 
       const cardLocal = JSON.parse(localStorage.getItem('cards_local'));
-      let card = Object.assign({}, cardLocal);
+      let card = Object.assign({}, cardLocal[0]);
 
 
       this.setState({
