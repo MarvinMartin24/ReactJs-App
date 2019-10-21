@@ -45,10 +45,13 @@ class LogIn extends Component {
 
         const user = response[0].result;
         const cards = response[1];
+        const wallet = response[2];
 
 
         localStorage.setItem('user_local', JSON.stringify(user));
         localStorage.setItem('cards_local', JSON.stringify(cards));
+        localStorage.setItem('wallet_local', JSON.stringify(wallet));
+
 
 
 

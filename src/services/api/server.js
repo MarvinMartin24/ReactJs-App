@@ -29,6 +29,11 @@ function getCard(id) {
     return object;
 }
 
+function getWallet(id) {
+    let object = wallets.find(user => user.user_id === id);
+    return object;
+}
+
 export function authenticate(email, password) {
 
     const localUser = JSON.parse(localStorage.getItem('user_local'));
@@ -41,7 +46,7 @@ export function authenticate(email, password) {
             // LogIn from user api
             if (user.email === email && user.password === password){
 
-              return [success(user), getCard(user.id)];
+              return [success(user), getCard(user.id), getWallet(user.id)];
             }
 
             // LogIn from SignIn - LocalStorage
