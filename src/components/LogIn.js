@@ -46,6 +46,8 @@ class LogIn extends Component {
         const cards = response[1];
         const wallet = response[2];
         const transfers = response[3];
+        const payIns = response[4];
+        const payOuts = response[5];
 
 
 
@@ -53,6 +55,9 @@ class LogIn extends Component {
         localStorage.setItem('cards_local', JSON.stringify(cards));
         localStorage.setItem('wallet_local', JSON.stringify(wallet));
         localStorage.setItem('transfers_local', JSON.stringify(transfers));
+        localStorage.setItem('payIns_local', JSON.stringify(payIns));
+        localStorage.setItem('payOuts_local', JSON.stringify(payOuts));
+
 
 
 
