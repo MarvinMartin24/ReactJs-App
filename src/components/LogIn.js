@@ -23,7 +23,6 @@ class LogIn extends Component {
           password: localUser.password
         });
       }
-
     }
 
 
@@ -72,7 +71,7 @@ class LogIn extends Component {
     else{
 
         // Spam message
-        alert(response.error);
+        alert(response[0].error);
     }
   }
 

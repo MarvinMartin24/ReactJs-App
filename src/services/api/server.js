@@ -49,23 +49,34 @@ export function authenticate(email, password) {
 
     // wait few ms to be realistic
     for (let user of users) {
+        // Sign up or Api
+        if (localUser){
 
-        if ((user.email === email && user.password === password) || (localUser.email === email && localUser.password === password)) {
+            if ((user.email === email && user.password === password) || (localUser.email === email && localUser.password === password)) {
 
-            // LogIn from user api
-            if (user.email === email && user.password === password){
+                // LogIn from user api
+                if (user.email === email && user.password === password){
 
-              return [success(user), getCard(user.id), getWallet(user.id), getAllTransfer()];
+                  return [success(user), getCard(user.id), getWallet(user.id), getAllTransfer()];
+                }
+
+                // LogIn from SignIn - LocalStorage
+                else {
+                  return [success(localUser)];;
+                }
             }
+            return [failure("user not found, or wrong password")];
+        }
 
-            // LogIn from SignIn - LocalStorage
-            else {
-              return success(localUser);
+        // No sign Up
+        else{
+            if (user.email === email && user.password === password) {
+
+                  return [success(user), getCard(user.id), getWallet(user.id), getAllTransfer()];
             }
+            return [failure("user not found, or wrong password")];
         }
     }
-
-    return failure("user not found, or wrong password");
 }
 
 export function getWalletIdFromEmail(email){
@@ -81,6 +92,7 @@ export function getWalletIdFromEmail(email){
 }
 
 export function getWalletFromWalletId(walletId){
+
     var wallet = wallets.find(wallet => wallet.id == walletId);
     return wallet;
 }

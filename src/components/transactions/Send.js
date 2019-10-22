@@ -33,13 +33,15 @@ class Send extends Component {
 
   isEmailValid = () =>{
       // Verification sucessed
-      if(this.state.credited_wallet_id.status === "success"){
+      var userWalletId = JSON.parse(localStorage.getItem('wallet_local'));
+      console.log(userWalletId.id);
+      if((this.state.credited_wallet_id.status === "success") && (this.state.credited_wallet_id.result !== userWalletId.id )){
           return(true);
       }
       // Verification failed
       else{
 
-          alert(this.state.credited_wallet_id.error);
+          alert("Wrong Email");
           return(false);
       }
     }
