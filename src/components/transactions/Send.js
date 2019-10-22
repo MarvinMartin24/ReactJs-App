@@ -70,13 +70,13 @@ class Send extends Component {
       // add to localStorage the transfer
 
       var allLocalCreditedWallet = JSON.parse(localStorage.getItem('credited_wallet'));
-      let creditedWallet = api.getWalletFromWalletId(this.state.credited_wallet_id.result)
+      let creditedWallet = api.getWalletFromWalletId(this.state.credited_wallet_id);
       creditedWallet.balance +=  this.state.amount;
 
 
       // credited_wallet already exist
       if (allLocalCreditedWallet){
-          let index = allLocalCreditedWallet.findIndex(wallet => wallet.id === this.state.credited_wallet_id.result);
+          let index = allLocalCreditedWallet.findIndex(wallet => wallet.id == this.state.credited_wallet_id);
 
           if (index > -1){ // credited wallet is in allLocalCreditedWallet
               allLocalCreditedWallet[index].balance += this.state.amount;
@@ -109,7 +109,7 @@ class Send extends Component {
       if ((this.isEmailValid() === true) && (this.isAmountValid() === true) ){
           this.addToTransfertList();
           this.updateUserLocalBalance();
-          this.addToCreditedWalletList()
+          this.addToCreditedWalletList();
           alert("Transaction done !");
       }
 

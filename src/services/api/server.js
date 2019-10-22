@@ -81,6 +81,6 @@ export function getWalletIdFromEmail(email){
 }
 
 export function getWalletFromWalletId(walletId){
-    let wallet = wallets.find(wallet => wallet.id === walletId);
+    var wallet = wallets.find(wallet => wallet.id == walletId);
     return wallet;
 }
