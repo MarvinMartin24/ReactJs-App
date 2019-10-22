@@ -59,17 +59,11 @@ class Send extends Component {
 
   addToTransfertList = () =>{
       // add to localStorage the transfer
-
-      var allLocalTransfer = JSON.parse(localStorage.getItem('transfer_local'));
-      if (allLocalTransfer){
-          allLocalTransfer.push(this.state);
-      }
-      else {
-          var allLocalTransfer = []
-          allLocalTransfer.push(this.state);
-      }
-
-      localStorage.setItem('transfer_local', JSON.stringify(allLocalTransfer));
+      var newTransfer = this.state;
+      newTransfer.credited_wallet_id = Object.assign(newTransfer.credited_wallet_id.result);
+      var allLocalTransfer = JSON.parse(localStorage.getItem('transfers_local'));
+      allLocalTransfer.push(newTransfer);
+      localStorage.setItem('transfers_local', JSON.stringify(allLocalTransfer));
   }
 
   addToCreditedWalletList = () =>{

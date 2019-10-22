@@ -46,11 +46,15 @@ class LogIn extends Component {
         const user = response[0].result;
         const cards = response[1];
         const wallet = response[2];
+        const transfers = response[3];
+
 
 
         localStorage.setItem('user_local', JSON.stringify(user));
         localStorage.setItem('cards_local', JSON.stringify(cards));
         localStorage.setItem('wallet_local', JSON.stringify(wallet));
+        localStorage.setItem('transfers_local', JSON.stringify(transfers));
+
 
 
         // Spam message

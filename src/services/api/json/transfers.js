@@ -1,4 +1,4 @@
-export const transfer = [
+export const transfers = [
     {
             id: "4453",
             debited_wallet_id:"2424",

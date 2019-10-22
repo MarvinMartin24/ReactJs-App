@@ -3,7 +3,7 @@ import {cards} from './json/cards.js';
 import {wallets} from './json/wallets.js';
 import {payIns} from './json/payIns.js';
 import {payOuts} from './json/payOuts.js';
-import {transfer} from './json/transfer.js';
+import {transfers} from './json/transfers.js';
 
 
 
@@ -39,6 +39,10 @@ function getWallet(id) {
     return object;
 }
 
+function getAllTransfer(){
+    return transfers;
+}
+
 export function authenticate(email, password) {
 
     const localUser = JSON.parse(localStorage.getItem('user_local'));
@@ -51,7 +55,7 @@ export function authenticate(email, password) {
             // LogIn from user api
             if (user.email === email && user.password === password){
 
-              return [success(user), getCard(user.id), getWallet(user.id)];
+              return [success(user), getCard(user.id), getWallet(user.id), getAllTransfer()];
             }
 
             // LogIn from SignIn - LocalStorage
