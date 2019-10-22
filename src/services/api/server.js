@@ -44,9 +44,21 @@ function getAllTransfer(){
 }
 
 export function isEmailAvailable(email){
-    if (users.find(user => user.email === email))
-        return false;
+
+    const localUser = JSON.parse(localStorage.getItem('user_local'));
+
+    if(localUser) {
+        if((users.find(user => user.email === email)) || (localUser.email === email)) {
+            return false;
+        }
+        return true
+    }
+    else {
+        if (users.find(user => user.email === email)) {
+            return false;
+        }
     return true;
+    }
 }
 
 export function authenticate(email, password) {
