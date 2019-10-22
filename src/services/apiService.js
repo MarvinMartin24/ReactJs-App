@@ -1,5 +1,10 @@
 import * as mock from './api/server.js';
 
+
+export function isEmailAvailable(email){
+    return mock.isEmailAvailable(email);
+}
+
 export function authenticate(email, password){
     return mock.authenticate(email, password);
 }

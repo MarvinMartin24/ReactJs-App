@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import * as api from '../services/apiService.js';
+
 
 
 class SignUp extends Component {
@@ -26,8 +28,16 @@ class SignUp extends Component {
 
   submit = () => {
     const signUpUser = this.state;
-    localStorage.setItem('user_local', JSON.stringify(signUpUser));
-    this.props.history.push("/LogIn");
+    if(api.isEmailAvailable(signUpUser.email)){
+        localStorage.setItem('user_local', JSON.stringify(signUpUser));
+        alert("Account Created !")
+        this.props.history.push("/LogIn");
+    }
+    else {
+        alert("Email Already used !")
+        this.props.history.push("/SignUp");
+    }
+
   }
 
   render() {

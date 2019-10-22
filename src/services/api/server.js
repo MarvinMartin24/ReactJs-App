@@ -43,6 +43,12 @@ function getAllTransfer(){
     return transfers;
 }
 
+export function isEmailAvailable(email){
+    if (users.find(user => user.email === email))
+        return false;
+    return true;
+}
+
 export function authenticate(email, password) {
 
     const localUser = JSON.parse(localStorage.getItem('user_local'));
