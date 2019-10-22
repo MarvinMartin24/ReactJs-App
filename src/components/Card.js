@@ -34,7 +34,7 @@ class Card extends Component {
 
    getIndexCard = () => {
       const cardLocal = JSON.parse(localStorage.getItem('cards_local'));
-      let index = cardLocal.findIndex(card => card.id == this.state.card.id);
+      let index = cardLocal.findIndex(card => card.id === this.state.card.id);
       return index;
   }
 
