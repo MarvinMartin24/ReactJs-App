@@ -80,7 +80,7 @@ export function authenticate(email, password) {
 
                 // LogIn from SignIn - LocalStorage
                 else {
-                    var emptyCard = [{user_id: localUser.id , id: Math.floor(Math.random() * 1000) , last_4:'' , brand:'' , expired_at: ''}];
+                    var emptyCard = [];
                     var emptyWalet = {id: Math.floor(Math.random() * 1000), user_id: localUser.id , balance: 0}
                     return [success(localUser), emptyCard, emptyWalet, getAllTransfer()];
                 }

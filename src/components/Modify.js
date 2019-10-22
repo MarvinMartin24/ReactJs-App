@@ -31,12 +31,15 @@ class Modify extends Component {
   }
 
   componentDidMount() {
-
+      let listCard =[]
       const userLocal = JSON.parse(localStorage.getItem('user_local'));
       let user = Object.assign({}, userLocal);
 
       const cardLocal = JSON.parse(localStorage.getItem('cards_local'));
-      let listCard = Object.assign([], cardLocal);
+      if (cardLocal){
+         listCard = Object.assign([], cardLocal);
+      }
+
 
       this.setState({
           user,
@@ -91,13 +94,16 @@ class Modify extends Component {
     }
 
     displayCards(){
-        let listCard = this.state.listCard.map((card, index) =>
-          <div key={index}>
-            <Card status="remove" card={card}/>
-            <button onClick={() => {this.remove(index)}}>Remove</button>
-          </div>
-        );
-        return (<ul>{listCard}</ul>);
+        if (Array.isArray(this.state.listCard) && this.state.listCard.length){
+            let listCard = this.state.listCard.map((card, index) =>
+              <div key={index}>
+                <Card status="remove" card={card}/>
+                <button onClick={() => {this.remove(index)}}>Remove</button>
+              </div>
+            );
+            return (<ul>{listCard}</ul>);
+        }
+
    }
 
 
