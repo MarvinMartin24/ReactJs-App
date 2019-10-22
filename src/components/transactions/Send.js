@@ -91,7 +91,7 @@ class Send extends Component {
       }
       // credited_wallet does not exist yet
       else {
-          var allLocalCreditedWallet = []
+          allLocalCreditedWallet = []
           allLocalCreditedWallet.push(creditedWallet);
       }
 

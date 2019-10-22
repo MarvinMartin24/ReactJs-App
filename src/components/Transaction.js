@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import * as api from '../services/apiService.js';
 import Send from "./transactions/Send.js";
 import Deposit from "./transactions/Deposit.js";
 import Withdrawal from "./transactions/Withdrawal.js";
@@ -12,20 +11,7 @@ class Transaction extends Component {
   constructor(props) {
     super(props);
     this.state = {
-          user: {
-            id: '',
-            first_name: '',
-            last_name: '',
-            email: '',
-            password: ''
-        },
-        card: {
-            user_id: '',
-            id:'',
-            last_4:'',
-            brand:'',
-            expired_at:''
-        },
+
         wallet: {
             id: '',
             user_id:'',
@@ -36,11 +22,6 @@ class Transaction extends Component {
   }
 
   componentDidMount() {
-      const userLocal = JSON.parse(localStorage.getItem('user_local'));
-      let user = Object.assign({}, userLocal);
-
-      const cardLocal = JSON.parse(localStorage.getItem('cards_local'));
-      let card = Object.assign({}, cardLocal[0]);
 
       const walletLocal = JSON.parse(localStorage.getItem('wallet_local'));
       let wallet = Object.assign({}, walletLocal);
@@ -48,7 +29,7 @@ class Transaction extends Component {
 
 
       this.setState({
-          user, card, wallet
+          wallet
       })
   }
 

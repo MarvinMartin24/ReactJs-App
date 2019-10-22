@@ -4,9 +4,7 @@ import logo from '../logo.png';
 
 
 class NavBar extends Component {
-    constructor(props) {
-    super(props);
-    }
+
 
      render() {
      return (

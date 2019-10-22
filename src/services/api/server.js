@@ -53,8 +53,8 @@ export function authenticate(email, password) {
 
     const localUser = JSON.parse(localStorage.getItem('user_local'));
 
-    // wait few ms to be realistic
     for (let user of users) {
+        console.log(user);
         // Sign up or Api
         if (localUser){
 
@@ -68,23 +68,24 @@ export function authenticate(email, password) {
 
                 // LogIn from SignIn - LocalStorage
                 else {
-                    var emptyCard = {user_id: localUser.id , id: Math.floor(Math.random() * 1000) , last_4:'' , brand:'' , expired_at: ''};
+                    var emptyCard = [{user_id: localUser.id , id: Math.floor(Math.random() * 1000) , last_4:'' , brand:'' , expired_at: ''}];
                     var emptyWalet = {id: Math.floor(Math.random() * 1000), user_id: localUser.id , balance: 0}
                     return [success(localUser), emptyCard, emptyWalet, getAllTransfer()];
                 }
             }
-            return [failure("user not found, or wrong password")];
         }
 
         // No sign Up
         else{
+            console.log("here");
             if (user.email === email && user.password === password) {
 
                   return [success(user), getCard(user.id), getWallet(user.id), getAllTransfer()];
             }
-            return [failure("user not found, or wrong password")];
         }
     }
+    return [failure("user not found, or wrong password")];
+
 }
 
 export function getWalletIdFromEmail(email){
