@@ -14,6 +14,7 @@ import LogOut from "./components/LogOut.js"
 
 
 
+const user = JSON.parse(localStorage.getItem('user_local'));
 
 
 class App extends Component {
@@ -55,6 +56,12 @@ class App extends Component {
           return(
               <BrowserRouter>
                   <NavBar/>
+                    <div>
+                        <br/>
+
+                        Welcome to Watermelon !
+                    </div>
+                    <br/>
                   <Route exact path="/SignUp" component ={SignUp}/>
                   <Route exact path="/LogIn"  render={(props) => <LogIn {...props} view={this.onChangeView} />} />
               </BrowserRouter>

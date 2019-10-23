@@ -71,10 +71,18 @@ export function isEmailAvailable(email){
 
 export function authenticate(email, password) {
 
+    var logCard, logWalet, emptyWalet, logTransfers, logPayIns, logPayOuts;
+
     const localUser = JSON.parse(localStorage.getItem('user_local'));
+    const localCards = JSON.parse(localStorage.getItem('cards_local'));
+    const localWallet = JSON.parse(localStorage.getItem('wallet_local'));
+    const localCreditedWallet = JSON.parse(localStorage.getItem('credited_wallet'));
+    const localTransfers = JSON.parse(localStorage.getItem('transfers_local'));
+    const localPayIns = JSON.parse(localStorage.getItem('payIns_local'));
+    const localPayOuts = JSON.parse(localStorage.getItem('payOuts_local'));
 
     for (let user of users) {
-        console.log(user);
+
         // Sign up or Api
         if (localUser){
 
@@ -83,19 +91,128 @@ export function authenticate(email, password) {
                 // LogIn from user api
                 if (user.email === email && user.password === password){
 
-                  return [success(user), getCard(user.id), getWallet(user.id), getAllTransfer(), getAllPayIns(), getAllPayOuts()];
+                    // If cards already Modify in local storage
+                    if (localCards && localCards[0].user_id === user.id){
+                        logCard = Object.assign([], localCards);
+                    }else{
+                        // No localCards get it from dataBase
+                        logCard = Object.assign([], getCard(user.id));
+                    }
+
+                    // If wallet updated in local storage
+                    if (localWallet && localWallet.user_id === user.id){
+                        logWalet = Object.assign({}, localWallet);
+
+
+                    }else{
+                        // No localwalet so create emptyWalet
+                        logWalet = Object.assign({}, getWallet(user.id));
+                    }
+
+                    // If some user received money in localStorage
+                    if (localCreditedWallet){
+                        let index = localCreditedWallet.findIndex(wallet => wallet.user_id == user.id);
+
+                        //if one of this user is our api User
+                        if (index > -1){
+                            logWalet = Object.assign({}, localCreditedWallet[index]);
+                        }
+                    }
+
+                    // If transfers updated in local storage
+                    if (localTransfers){
+                        logTransfers = Object.assign(localTransfers);
+
+                    }else{
+                        // No localTransfers get it from dataBase
+                        logTransfers = Object.assign(getAllTransfer());
+                    }
+
+                    // If payIns updated in local storage
+                    if (localPayIns){
+                        logPayIns = Object.assign(localPayIns);
+
+                    }else{
+                        logPayIns = Object.assign(getAllPayIns());
+                    }
+
+                    // If payOuts updated in local storage
+                    if (localPayOuts){
+                        logPayOuts = Object.assign(localPayOuts);
+                    }else{
+                        logPayOuts = Object.assign(getAllPayOuts());
+
+                    }
+
+                    return [success(user), logCard, logWalet, logTransfers, logPayIns, logPayOuts];
                 }
 
                 // LogIn from SignIn - LocalStorage
                 else {
-                    var emptyCard = [];
-                    var emptyWalet = {id: Math.floor(Math.random() * 1000), user_id: localUser.id , balance: 0}
-                    return [success(localUser), emptyCard, emptyWalet, getAllTransfer(), getAllPayIns(), getAllPayOuts()];
+
+                    // If cards already Modify in local storage
+                    if (localCards && localCards[0].user_id === localUser.id){
+                         logCard = Object.assign([], localCards);
+                    }else{
+                        // No localCards so create emptyCard
+                        var emptyCard = [];
+                        logCard = Object.assign([], emptyCard);
+                    }
+
+                    // If wallet updated in local storage
+                    if (localWallet && localWallet.user_id === localUser.id){
+
+                        logWalet = Object.assign({}, localWallet);
+
+                    }else{
+                        // No localwalet so create emptyWalet
+                        var emptyWalet = {id: Math.floor(Math.random() * 1000), user_id: localUser.id , balance: 0}
+                        logWalet = Object.assign({}, emptyWalet);
+                    }
+
+                    // If some user received money in localStorage
+                    if (localCreditedWallet){
+                        let index = localCreditedWallet.findIndex(wallet => wallet.user_id == localUser.id);
+
+                        //if one of this user is our api User
+                        if (index > -1){
+                            logWalet = Object.assign({}, localCreditedWallet[index]);
+                        }
+                    }
+
+
+                    // If transfers updated in local storage
+                    if (localTransfers){
+                        logTransfers = Object.assign(localTransfers);
+
+                    }else{
+                        // No localTransfers get it from dataBase
+                        logTransfers = Object.assign(getAllTransfer());
+                    }
+
+                    // If payIns updated in local storage
+                    if (localPayIns){
+                        logPayIns = Object.assign(localPayIns);
+
+                    }else{
+                        logPayIns = Object.assign(getAllPayIns());
+                    }
+
+                    // If payOuts updated in local storage
+                    if (localPayOuts){
+                        logPayOuts = Object.assign(localPayOuts);
+                    }else{
+                        logPayOuts = Object.assign(getAllPayOuts());
+
+                    }
+
+
+                    return [success(localUser), logCard, logWalet, logTransfers, logPayIns, logPayOuts];
                 }
             }
         }
 
-        // No sign Up
+        // No sign Up or No localStorage
         else{
             console.log("here");
             if (user.email === email && user.password === password) {

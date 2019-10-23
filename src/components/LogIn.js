@@ -42,6 +42,7 @@ class LogIn extends Component {
     // Verification sucessed
     if(response[0].status === "success"){
 
+        
         const user = response[0].result;
         const cards = response[1];
         const wallet = response[2];

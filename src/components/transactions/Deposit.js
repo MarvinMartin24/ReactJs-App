@@ -120,7 +120,6 @@ class Deposit extends Component {
           this.addToPayInList();
           this.updateUserLocalBalance();
           alert("Deposit done !");
-          this.props.history.push("/Transaction");
         }
     }
 

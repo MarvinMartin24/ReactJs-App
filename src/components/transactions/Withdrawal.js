@@ -121,7 +121,6 @@ class Withdrawal extends Component {
             this.addToPayOutList();
             this.updateUserLocalBalance();
             alert("Withdrawal done !");
-            this.props.history.push("/Transaction");
 
           }
 
