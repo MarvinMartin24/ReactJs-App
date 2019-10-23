@@ -14,3 +14,9 @@ export function getWalletIdFromEmail(email){
 export function getWalletFromWalletId(walletId){
     return mock.getWalletFromWalletId(walletId);
 }
+export function existingId() {
+    return mock.existingId();
+}
+export function createId() {
+    return mock.createId();
+}
