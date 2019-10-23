@@ -113,6 +113,7 @@ class Send extends Component {
           this.updateUserLocalBalance();
           this.addToCreditedWalletList();
           alert("Transaction done !");
+          this.props.history.push("/Transaction");
       }
 
   }
