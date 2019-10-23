@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../services/apiService.js';
+import { existingId, createId } from '../services/api/server.js';
 
 
 
@@ -9,10 +10,10 @@ class SignUp extends Component {
     constructor(props) {
     super(props);
 
-    api.existingId();
+    existingId();
 
     this.state = {
-      id: api.createId(),
+      id: createId(),
       first_name: '',
       last_name: '',
       email: '',

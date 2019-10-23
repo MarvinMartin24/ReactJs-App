@@ -44,6 +44,45 @@ export function getWallet(id) {
     console.log(object);
 }
 
+//create a list of all existing user ID
+export function existingId() {
+    const localUser = JSON.parse(localStorage.getItem('user_local'));
+
+    let listId = [];
+
+    if(localUser) {
+        listId.push(localUser.id);
+        for (let user of users) {
+            listId.push(user.id);
+        }
+    } else {
+        for (let user of users) {
+            listId.push(user.id);
+        }
+    }
+    localStorage.setItem('assigned_id', JSON.stringify(listId));
+}
+
+//make sure that the new created user ID is the last known user ID incremented by 1
+export function createId() {
+    const listId = JSON.parse(localStorage.getItem('assigned_id'));
+    let newId;
+
+    if(listId === []) {
+        return newId = Math.floor(Math.random() * 1000);
+    } else {
+        return newId = Math.max(...listId) + 1;
+    }
+}
+
+export function authenticate(email, password) {
+
+    const localUser = JSON.parse(localStorage.getItem('user_local'));
+
+    for (let user of users) {
+        console.log(user);
+        // Sign up or Api
+        if (localUser){
 
 export function createUser(user) {
 
