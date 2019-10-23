@@ -34,33 +34,19 @@ class LogIn extends Component {
      this.setState({ [input.id]: value })
   }
 
-  login = () => {
+  login = (event) => {
+      event.preventDefault();
     // Verification function
     const response = api.authenticate(this.state.email, this.state.password);
 
 
     // Verification sucessed
-    if(response[0].status === "success"){
-
-        
-        const user = response[0].result;
-        const cards = response[1];
-        const wallet = response[2];
-        const transfers = response[3];
-        const payIns = response[4];
-        const payOuts = response[5];
+    if(response.status === "success"){
 
 
+        const user = response.result;
 
         localStorage.setItem('user_local', JSON.stringify(user));
-        localStorage.setItem('cards_local', JSON.stringify(cards));
-        localStorage.setItem('wallet_local', JSON.stringify(wallet));
-        localStorage.setItem('transfers_local', JSON.stringify(transfers));
-        localStorage.setItem('payIns_local', JSON.stringify(payIns));
-        localStorage.setItem('payOuts_local', JSON.stringify(payOuts));
-
-
-
 
         // Spam message
         alert("logged in !");
@@ -75,9 +61,8 @@ class LogIn extends Component {
     }
     // Verification failed
     else{
-
         // Spam message
-        alert(response[0].error);
+        alert(response.error);
     }
   }
 

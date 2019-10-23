@@ -24,7 +24,7 @@ export const cards = [
             user_id: "3456",
             id:"2578",
             last_4:"3333",
-            brand:"Revolute",
+            brand:"Revolut",
             expired_at:"2020-03-27"
     }
 

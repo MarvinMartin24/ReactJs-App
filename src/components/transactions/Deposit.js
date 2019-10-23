@@ -1,158 +1,152 @@
 import React, { Component } from 'react';
 import { Form } from "react-bootstrap";
+import * as api from '../../services/apiService.js';
 
 
-class Deposit extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-          listCard: [],
-          selectedCard: {
-              user_id: '',
-              id:'',
-              last_4:'',
-              brand:'',
-              expired_at:''
-          },
-          payIn: {
-              id: '',
-              wallet_id:'',
-              amount:''
-          }
 
-    };
-  }
 
-  componentDidMount() {
-      let listCard =[]
-      const cardLocal = JSON.parse(localStorage.getItem('cards_local'));
-      if (cardLocal){
-         listCard = Object.assign([], cardLocal);
-      }
-      this.setState({
-          listCard,
-          selectedCard: listCard[0]
+class Withdrawal extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+            user: JSON.parse(localStorage.getItem('user_local')),
+            listCard: [],
+            selectedCard: {
+                user_id: '',
+                id:'',
+                last_4:'',
+                brand:'',
+                expired_at:''
+            },
+            payIn: {
+                id: '',
+                wallet_id:'',
+                amount:''
+            }
 
-      });
-  }
+      };
+    }
 
-  handleChangeAmount = (event) => {
-      event.preventDefault();
-      this.setState({
-           payIn: {
-              id: Math.floor(Math.random() * 1000),
-              wallet_id:this.props.wallet.id,
-              amount: parseInt(event.target.value),
-          }
-      })
-  }
+    componentDidMount() {
 
-  handleSelectCard = (event) => {
-      event.preventDefault();
-      console.log(event.target.options.selectedIndex);
-      const selectedIndex = event.target.options.selectedIndex;
+        this.setState({
+            listCard: api.getCards(this.state.user.id),
 
-      this.setState({
-            selectedCard: this.state.listCard[selectedIndex]
-      })
-  }
+        });
+    }
 
-  getTodayDate(){
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = today.getFullYear();
+    handleChangeAmount = (event) => {
+        event.preventDefault();
+        this.setState({
+            selectedCard: this.state.listCard[0],
+             payIn: {
+                id: Math.floor(Math.random() * 1000),
+                wallet_id:this.props.wallet.id,
+                amount: parseInt(event.target.value),
+            }
+        })
+    }
 
-        return [parseInt(yyyy),parseInt(mm),parseInt(dd)];
-  }
+    handleSelectCard = (event) => {
+        event.preventDefault();
 
-  isCardValid = () =>{
-      var cardDate = this.state.selectedCard.expired_at.split('-')
-      var yyyy = parseInt(cardDate[0]);
-      var mm = parseInt(cardDate[1]);
-      var dd = parseInt(cardDate[2]);
-      console.log( this.state.selectedCard);
+        console.log(event.target.options.selectedIndex);
+        const selectedIndex = event.target.options.selectedIndex;
+        console.log(selectedIndex);
+        this.setState({
+              selectedCard: this.state.listCard[selectedIndex]
+        })
+    }
 
-      if( yyyy > this.getTodayDate()[0] ){
-          return(true);
-      }
-      else {
-          if(yyyy === this.getTodayDate()[0]) {
+    getTodayDate(){
+          var today = new Date();
+          var dd = String(today.getDate()).padStart(2, '0');
+          var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+          var yyyy = today.getFullYear();
 
-              if(mm > this.getTodayDate()[1]){
-                  return(true);
-              }
-              else{
+          return [parseInt(yyyy),parseInt(mm),parseInt(dd)];
+    }
 
-                  if(mm === this.getTodayDate()[1]){
+    isCardValid = () =>{
+        var cardDate = this.state.selectedCard.expired_at.split('-')
+        var yyyy = parseInt(cardDate[0]);
+        var mm = parseInt(cardDate[1]);
+        var dd = parseInt(cardDate[2]);
+        console.log( this.state.selectedCard);
 
-                      if(dd > this.getTodayDate()[2]){
-                          return(true);
-                      }
-                  }
-              }
-
-          }
+        if( yyyy > this.getTodayDate()[0] ){
+            return(true);
         }
-        alert("Card expired!");
-        return(false);
-    }
+        else {
+            if(yyyy === this.getTodayDate()[0]) {
 
-    addToPayInList = () =>{
-    // add to localStorage the transfer
-        var newPayIn = this.state.payIn;
-        var allLocalPayIns = JSON.parse(localStorage.getItem('payIns_local'));
+                if(mm > this.getTodayDate()[1]){
+                    return(true);
+                }
+                else{
 
-        allLocalPayIns.push(newPayIn);
-        localStorage.setItem('payIns_local', JSON.stringify(allLocalPayIns));
-    }
+                    if(mm === this.getTodayDate()[1]){
 
-    updateUserLocalBalance = () =>{
-        // update in the localStorage the user wallet
-        let walletLocal = JSON.parse(localStorage.getItem('wallet_local'));
-        walletLocal.balance += this.state.payIn.amount;
-        localStorage.setItem('wallet_local', JSON.stringify(walletLocal));
-    }
+                        if(dd > this.getTodayDate()[2]){
+                            return(true);
+                        }
+                    }
+                }
 
-    deposit = () => {
-        if ((this.isCardValid() === true) ){
-          this.addToPayInList();
-          this.updateUserLocalBalance();
-          alert("Deposit done !");
-        }
-    }
-
-
-
-
-  render() {
-    return (
-        <div >
-        <Form.Group controlId="exampleForm.ControlSelect1">
-          <Form.Label>select Card</Form.Label>
-          <Form.Control as="select" onChange={this.handleSelectCard}>
-          {
-              this.state.listCard.map(
-                 (card, index) =>(
-                    <option key={index}>
-                        {card.brand +" xxxxxxxx"+card.last_4 +"     (Expired date: "+card.expired_at + ")"}
-                    </option>
-                )
-             )
+            }
           }
-          </Form.Control>
-        </Form.Group>
-        <br/>
-        <form onSubmit={this.deposit}>
-          <label>Amount:</label>
-          <input id="amount" type="number"  onChange={this.handleChangeAmount}/>
-          <button >Deposit</button>
-        </form>
-        </div>
+          alert("Card expired!");
+          return(false);
+      }
 
-    );
-  }
 
-}
-export default Deposit;
+      deposit = (event) => {
+          event.preventDefault();
+
+          if ((this.isCardValid() === true) ){
+
+            api.addPayIn(this.state.payIn);
+            api.depositWallet(this.props.wallet.id, this.state.payIn.amount)
+            this.props.onChange()
+            alert("Deposit done !");
+
+          }
+
+
+      }
+
+
+
+
+    render() {
+        console.log(this.state);
+      return (
+          <div >
+          <Form.Group controlId="exampleForm.ControlSelect1">
+            <Form.Label>select Card</Form.Label>
+            <Form.Control as="select" onChange={this.handleSelectCard}>
+            {
+                this.state.listCard.map(
+                   (card, index) =>(
+                      <option key={index}>
+                          {card.brand +" xxxxxxxx"+card.last_4 +"     (Expired date: "+card.expired_at + ")"}
+                      </option>
+                  )
+               )
+            }
+            </Form.Control>
+          </Form.Group>
+          <br/>
+          <form onSubmit={this.deposit}>
+            <label>Amount:</label>
+            <input id="amount" type="number"  onChange={this.handleChangeAmount}/>
+            <button >Deposit</button>
+          </form>
+          </div>
+
+      );
+    }
+
+    }
+export default Withdrawal;

@@ -11,14 +11,16 @@ class LogOut extends Component {
       }
     }
 
-    exit = () =>{
+    exit = (event) =>{
+        event.preventDefault();
         localStorage.setItem("view", JSON.stringify("NavBar"));
         this.props.view();
         this.props.history.push("/");
 
     }
 
-    stay = () =>{
+    stay = (event) =>{
+        event.preventDefault();
         this.props.history.push("/Home");
     }
 

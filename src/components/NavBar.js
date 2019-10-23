@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import logo from '../logo.png';
+import { Link } from 'react-router-dom';
+
 
 
 
@@ -12,11 +14,11 @@ class NavBar extends Component {
            <header className="App-header">
              <img src={logo} className="App-logo" alt="logo" />
            </header>
-           <a href="/"> Accueil </a>
-           <br />
-           <a href="/LogIn"> Log In </a>
-           <br />
-           <a href="/SignUp"> Sign Up </a>
+           <Link to="/"> Welcome </Link>
+           <br/>
+           <Link to="/LogIn"> Log In </Link>
+           <br/>
+           <Link to="/SignUp"> Sign Up  </Link>
          </div>
         );
     }

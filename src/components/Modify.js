@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Card from "./Card.js"
+import * as api from '../services/apiService.js';
 
 
 
@@ -8,17 +9,10 @@ class Modify extends Component {
   constructor(props) {
     super(props);
 
-
     this.state = {
-      user: {
-        id: '',
-        first_name: '',
-        last_name: '',
-        email: '',
-        password: ''
-    },
-    listCard: [],
-    newCard: {
+      user: JSON.parse(localStorage.getItem('user_local')),
+      listCard: [],
+      newCard: {
         user_id: '',
         id:'',
         last_4:'',
@@ -31,21 +25,13 @@ class Modify extends Component {
   }
 
   componentDidMount() {
-      let listCard =[]
-      const userLocal = JSON.parse(localStorage.getItem('user_local'));
-      let user = Object.assign({}, userLocal);
 
-      const cardLocal = JSON.parse(localStorage.getItem('cards_local'));
-      if (cardLocal){
-         listCard = Object.assign([], cardLocal);
-      }
-
-
+      console.log(this.state.user.id);
       this.setState({
-          user,
-          listCard,
+          user: api.getUser(this.state.user.id),
+          listCard: api.getCards(this.state.user.id),
           newCard: {
-              user_id: user.id,
+              user_id: this.state.user.id,
               id: Math.floor(Math.random() * 1000),
           }
 
@@ -66,7 +52,7 @@ class Modify extends Component {
 
     }
 
-    handleChangeCard = (event) => {
+    handleChangeAddCard = (event) => {
         event.preventDefault();
 
         let formValues = this.state.newCard;
@@ -77,54 +63,54 @@ class Modify extends Component {
         this.setState({formValues})
     }
 
-    remove(index) {
+    remove(card) {
 
-        let listCard = this.state.listCard
-        listCard.splice(index, 1)
-
-        localStorage.setItem('cards_local', JSON.stringify(listCard));
-        const cardLocal = JSON.parse(localStorage.getItem('cards_local'));
-        let newlistCard = Object.assign([], cardLocal);
-
+        api.removeCard(card.id);
         this.setState({
-            listCard: newlistCard
+            listCard: api.getCards(this.state.user.id),
+
         });
-        window.location.reload();
 
     }
 
-    displayCards(){
+
+    displayCards = () =>{
         if (Array.isArray(this.state.listCard) && this.state.listCard.length){
+
             let listCard = this.state.listCard.map((card, index) =>
               <div key={index}>
-                <Card status="remove" card={card}/>
-                <button onClick={() => {this.remove(index)}}>Remove</button>
+                <Card card={card}/>
+                <button onClick={() => {this.remove(card)}}>Remove</button>
               </div>
             );
             return (<ul>{listCard}</ul>);
         }
-
    }
 
 
-   submitModifyUser = () => {
-      const signUpUser = this.state.user;
-      localStorage.setItem('user_local', JSON.stringify(signUpUser));
+   submitModifyUser = (event) => {
+      event.preventDefault();
+      const newUser = this.state.user;
+      api.updateUser(newUser);
+      this.setState({
+          user: api.getUser(this.state.user.id),
 
+      });
     }
 
-    submitAddCard = () => {
+    submitAddCard = (event) => {
+        event.preventDefault();
         const newCard = this.state.newCard;
-        const cardLocal = JSON.parse(localStorage.getItem('cards_local'));
+        api.addCard(newCard);
 
-        cardLocal.push(newCard);
+        this.setState({
+            listCard: api.getCards(this.state.user.id),
 
-        localStorage.setItem('cards_local', JSON.stringify(cardLocal));
+        });
      }
 
 
   render(){
-    console.log(this.state.listCard)
     return (
         <div>
           <form onSubmit={this.submitModifyUser}>
@@ -160,18 +146,18 @@ class Modify extends Component {
           <ul>
               <form onSubmit={this.submitAddCard}>
                 <label>Card Number:</label>
-                <input name="last_4" type="text"  onChange={this.handleChangeCard}/>
+                <input name="last_4" type="text"  onChange={this.handleChangeAddCard}/>
 
                 <br/>
 
 
                 <label>Brand:</label>
-                <input name="brand" type="text"  onChange={this.handleChangeCard}/>
+                <input name="brand" type="text"  onChange={this.handleChangeAddCard}/>
 
                 <br/>
 
                 <label>Expired Date:</label>
-                <input name="expired_at" type="text" onChange={this.handleChangeCard}/>
+                <input name="expired_at" type="text" onChange={this.handleChangeAddCard}/>
                 <br/>
 
                 <button >Add</button>

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Form } from "react-bootstrap";
+import * as api from '../../services/apiService.js';
+
 
 
 
@@ -8,6 +10,7 @@ class Withdrawal extends Component {
     constructor(props) {
       super(props);
       this.state = {
+            user: JSON.parse(localStorage.getItem('user_local')),
             listCard: [],
             selectedCard: {
                 user_id: '',
@@ -26,14 +29,9 @@ class Withdrawal extends Component {
     }
 
     componentDidMount() {
-        let listCard =[]
-        const cardLocal = JSON.parse(localStorage.getItem('cards_local'));
-        if (cardLocal){
-           listCard = Object.assign([], cardLocal);
-        }
+
         this.setState({
-            listCard,
-            selectedCard: listCard[0]
+            listCard: api.getCards(this.state.user.id),
 
         });
     }
@@ -41,7 +39,8 @@ class Withdrawal extends Component {
     handleChangeAmount = (event) => {
         event.preventDefault();
         this.setState({
-             payIn: {
+            selectedCard: this.state.listCard[0],
+             payOut: {
                 id: Math.floor(Math.random() * 1000),
                 wallet_id:this.props.wallet.id,
                 amount: parseInt(event.target.value),
@@ -51,9 +50,10 @@ class Withdrawal extends Component {
 
     handleSelectCard = (event) => {
         event.preventDefault();
+
         console.log(event.target.options.selectedIndex);
         const selectedIndex = event.target.options.selectedIndex;
-
+        console.log(selectedIndex);
         this.setState({
               selectedCard: this.state.listCard[selectedIndex]
         })
@@ -100,26 +100,29 @@ class Withdrawal extends Component {
           return(false);
       }
 
-      addToPayOutList = () =>{
-      // add to localStorage the transfer
-          var newPayOut = this.state.payIn;
-          var allLocalPayOuts = JSON.parse(localStorage.getItem('payOuts_local'));
+      isAmountValid = () =>{
+        // Verification sucessed
+        console.log(this.state.payOut.amount,this.props.solde);
+        if(this.state.payOut.amount <= this.props.solde){
+            return(true);
+        }
+        // Verification failed
+        else{
 
-          allLocalPayOuts.push(newPayOut);
-          localStorage.setItem('payOuts_local', JSON.stringify(allLocalPayOuts));
+            alert("Your Withdrawal is too high");
+            return(false);
+        }
       }
 
-      updateUserLocalBalance = () =>{
-          // update in the localStorage the user wallet
-          let walletLocal = JSON.parse(localStorage.getItem('wallet_local'));
-          walletLocal.balance -= this.state.payIn.amount;
-          localStorage.setItem('wallet_local', JSON.stringify(walletLocal));
-      }
 
-      deposit = () => {
-          if ((this.isCardValid() === true) ){
-            this.addToPayOutList();
-            this.updateUserLocalBalance();
+      withdrawal = (event) => {
+          event.preventDefault();
+
+          if ((this.isCardValid() === true) && (this.isAmountValid() === true)){
+            console.log(this.props.wallet);
+            api.addPayOut(this.state.payOut);
+            api.withdrawalWallet(this.props.wallet.id, this.state.payOut.amount)
+            this.props.onChange()
             alert("Withdrawal done !");
 
           }
@@ -149,7 +152,7 @@ class Withdrawal extends Component {
             </Form.Control>
           </Form.Group>
           <br/>
-          <form onSubmit={this.deposit}>
+          <form onSubmit={this.withdrawal}>
             <label>Amount:</label>
             <input id="amount" type="number"  onChange={this.handleChangeAmount}/>
             <button >Withdrawal</button>

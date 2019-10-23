@@ -5,10 +5,14 @@ import * as api from '../services/apiService.js';
 
 class SignUp extends Component {
 
+
     constructor(props) {
     super(props);
+
+    api.existingId();
+
     this.state = {
-      id: Math.floor(Math.random() * 1000),
+      id: api.createId(),
       first_name: '',
       last_name: '',
       email: '',
@@ -25,16 +29,24 @@ class SignUp extends Component {
   }
 
 
-  submit = () => {
+  submit = (event) => {
+      event.preventDefault();
+
     const signUpUser = this.state;
+
     if(api.isEmailAvailable(signUpUser.email)){
+
+        api.createUser(signUpUser)
+
         localStorage.setItem('user_local', JSON.stringify(signUpUser));
+
         alert("Account Created !")
+
         this.props.history.push("/LogIn");
+
     }
     else {
         alert("Email Already used !")
-        this.props.history.push("/SignUp");
     }
 
   }
