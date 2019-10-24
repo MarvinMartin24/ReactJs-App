@@ -64,10 +64,6 @@ export function getWalletIdFromEmail(email){
     return server.getWalletIdFromEmail(email);
 }
 
-export function getWalletFromWalletId(walletId){
-    return server.getWalletFromWalletId(walletId);
-}
-
 
 //----------- TRANSFERS -------------//
 

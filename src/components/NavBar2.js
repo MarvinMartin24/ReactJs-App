@@ -9,7 +9,11 @@ class NavBar2 extends Component {
         return (
             <div className="container">
                 <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
+                    <img
+                        src={logo}
+                        className="App-logo"
+                        alt="logo"
+                    />
                 </header>
                 <Link to="/Home"> Home </Link>
                     <br/>

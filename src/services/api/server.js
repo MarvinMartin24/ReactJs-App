@@ -55,9 +55,11 @@ export function createId() {
     let newId;
 
     if(listId === []) {
-        return newId = Math.floor(Math.random() * 1000);
+        newId = Math.floor(Math.random() * 1000)
+        return newId;
     } else {
-        return newId = Math.max(...listId) + 1;
+        newId = Math.max(...listId) + 1
+        return newId;
     }
 }
 
@@ -154,14 +156,6 @@ export function getWalletIdFromEmail(email){
         return failure('Wrong email')
     }
 
-}
-
-export function getWalletFromWalletId(walletId){
-
-    var wallet = wallets.find(wallet => (
-        wallet.id == walletId
-    ));
-    return wallet;
 }
 
 //----------- CARDS -------------//
