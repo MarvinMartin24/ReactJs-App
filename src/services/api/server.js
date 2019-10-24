@@ -9,14 +9,14 @@ import {transfers} from './json/transfers.js';
 
 function success(result) {
     return {
-        status: "success",
+        status: 'success',
         result: result
     }
 }
 
 function failure(error) {
     return {
-        status: "failure",
+        status: 'failure',
         error: error
     }
 }
@@ -115,7 +115,7 @@ export function authenticate(email, password) {
                     return success(user);
                 }
             }
-    return failure("user not found, or wrong password");
+    return failure('User not found, or wrong password');
 }
 
 //----------- WALLETS -----------//
