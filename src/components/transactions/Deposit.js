@@ -20,7 +20,7 @@ class Withdrawal extends Component {
             },
             listPayIns: api.getPayIns(this.props.wallet.id),
             payIn: {
-                id: '',
+                id: api.getNewIdPayIn(),
                 wallet_id:'',
                 amount:''
             }
@@ -40,7 +40,7 @@ class Withdrawal extends Component {
         this.setState({
             selectedCard: this.state.listCard[0],
             payIn: {
-                id: api.getNewIdPayIn(),
+                id: this.state.payIn.id,
                 wallet_id:this.props.wallet.id,
                 amount: parseInt(event.target.value)*100,
             }
@@ -103,7 +103,12 @@ class Withdrawal extends Component {
               api.depositWallet(this.props.wallet.id, this.state.payIn.amount);
               this.props.onChange()
               this.setState({
-                  listPayIns: api.getPayIns(this.props.wallet.id)
+                  listPayIns: api.getPayIns(this.props.wallet.id),
+                  payIn: {
+                      id: api.getNewIdPayIn(),
+                      wallet_id: this.state.payIn.wallet_id,
+                      amount: this.state.payIn.amount
+                  }
               });
               alert("Deposit done !");
           }
