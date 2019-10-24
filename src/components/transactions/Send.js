@@ -20,7 +20,7 @@ class Send extends Component {
         event.preventDefault();
 
         this.setState({
-            amount: parseInt(event.target.value),
+            amount: parseInt(event.target.value)*100,
         });
     }
 
@@ -71,6 +71,10 @@ class Send extends Component {
             this.props.onChange()
             alert('Transaction done !');
         }
+
+        this.setState({
+            listTransfers: api.getTransfers(this.props.walletId),
+        });
     }
 
     render() {
@@ -98,8 +102,8 @@ class Send extends Component {
                         {
                             this.state.listTransfers.map((transfer, index) => (
                                     <option key={index}>
-                                        {"Transfer ID: " + transfer.id + "  /   Debited wallet ID: " + transfer.debited_wallet_id + "   /   Credited wallet ID: " + transfer.credited_wallet_id + 
-                                        "   /   Amount: " + transfer.amount}
+                                        {"Transfer ID: " + transfer.id + "  /   Debited wallet ID: " + transfer.debited_wallet_id + "   /   Credited wallet ID: " + 
+                                        transfer.credited_wallet_id.result + "   /   Amount: " + transfer.amount/100}
                                     </option>
                                 ))
                         }

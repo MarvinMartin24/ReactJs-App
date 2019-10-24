@@ -17,7 +17,7 @@ class Withdrawal extends Component {
                 brand:'',
                 expired_at:''
             },
-            listPayOuts: api.getPayIns(this.props.wallet.id),
+            listPayOuts: api.getPayOuts(this.props.wallet.id),
             payOut: {
                 id: '',
                 wallet_id:'',
@@ -40,7 +40,7 @@ class Withdrawal extends Component {
             payOut: {
                 id: api.getNewIdPayOut(),
                 wallet_id:this.props.wallet.id,
-                amount: parseInt(event.target.value),
+                amount: parseInt(event.target.value)*100,
             }
         });
     }
@@ -114,6 +114,9 @@ class Withdrawal extends Component {
               this.props.onChange()
               alert('Withdrawal done !');
           }
+          this.setState({
+            listPayOuts: api.getPayOuts(this.props.wallet.id),
+        });
       }
 
       render() {
@@ -136,7 +139,7 @@ class Withdrawal extends Component {
                         {
                             this.state.listPayOuts.map((payOut, index) => (
                                     <option key={index}>
-                                        {"Withdrawal ID: " + payOut.id + "  /   Withdrawal wallet: " + payOut.wallet_id + "   /   Amount: " + payOut.amount}
+                                        {"Withdrawal ID: " + payOut.id + "  /   Withdrawal wallet: " + payOut.wallet_id + "   /   Amount: " + payOut.amount/100}
                                     </option>
                                 ))
                         }
