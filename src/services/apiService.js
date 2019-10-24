@@ -1,83 +1,94 @@
-import * as mock from './api/server.js';
+import * as server from './api/server.js';
 
+
+
+//----------- USERS -----------------//
 
 export function isEmailAvailable(email){
-    return mock.isEmailAvailable(email);
+    return server.isEmailAvailable(email);
 }
 
 export function authenticate(email, password){
-    return mock.authenticate(email, password);
+    return server.authenticate(email, password);
 }
 
 export function createUser(user){
-    return mock.createUser(user);
-}
-
-export function updateWallets(walletIdSender, walletIdReceiver, amount){
-    return mock.updateWallets(walletIdSender, walletIdReceiver, amount);
-}
-
-export function updateCard(newCard){
-    return mock.updateCard(newCard);
+    return server.createUser(user);
 }
 
 export function updateUser(newUser){
-    return mock.updateUser(newUser);
-}
-
-export function addCard(newCard){
-    return mock.addCard(newCard);
-}
-
-export function addTransfert(newTransfert){
-    return mock.addTransfert(newTransfert);
-}
-
-
-export function withdrawalWallet(walletId, amount){
-    return mock.withdrawalWallet(walletId, amount);
-}
-
-export function depositWallet(walletId, amount){
-    return mock.depositWallet(walletId, amount);
-}
-
-
-export function addPayOut(newPayOut){
-    return mock.addPayOut(newPayOut);
-}
-
-export function addPayIn(newPayIn){
-    return mock.addPayIn(newPayIn);
-}
-
-export function removeCard(cardId){
-    return mock.removeCard(cardId);
-}
-
-export function getCards(id){
-    return mock.getCards(id);
+    return server.updateUser(newUser);
 }
 
 export function getUser(id){
-    return mock.getUser(id);
-}
-
-export function getWallet(id){
-    return mock.getWallet(id);
-}
-
-
-export function getWalletIdFromEmail(email){
-    return mock.getWalletIdFromEmail(email);
-}
-export function getWalletFromWalletId(walletId){
-    return mock.getWalletFromWalletId(walletId);
+    return server.getUser(id);
 }
 
 export function existingId() {
-    return mock.existingId();
+    return server.existingId();
 }
+
 export function createId() {
-    return mock.createId();
+    return server.createId();
+}
+
+//----------- CARDS -----------------//
+
+export function updateCard(newCard){
+    return server.updateCard(newCard);
+}
+
+export function addCard(newCard){
+    return server.addCard(newCard);
+}
+
+export function removeCard(cardId){
+    return server.removeCard(cardId);
+}
+
+export function getCards(id){
+    return server.getCards(id);
+}
+
+//----------- WALLETS ---------------//
+
+export function updateWallets(walletIdSender, walletIdReceiver, amount){
+    return server.updateWallets(walletIdSender, walletIdReceiver, amount);
+}
+
+export function getWallet(id){
+    return server.getWallet(id);
+}
+
+export function getWalletIdFromEmail(email){
+    return server.getWalletIdFromEmail(email);
+}
+
+export function getWalletFromWalletId(walletId){
+    return server.getWalletFromWalletId(walletId);
+}
+
+
+//----------- TRANSFERS -------------//
+
+export function addTransfert(newTransfert){
+    return server.addTransfert(newTransfert);
+}
+
+//----------- PAYINS & PAYOUTS ------//
+
+export function withdrawalWallet(walletId, amount){
+    return server.withdrawalWallet(walletId, amount);
+}
+
+export function depositWallet(walletId, amount){
+    return server.depositWallet(walletId, amount);
+}
+
+export function addPayOut(newPayOut){
+    return server.addPayOut(newPayOut);
+}
+
+export function addPayIn(newPayIn){
+    return server.addPayIn(newPayIn);
 }

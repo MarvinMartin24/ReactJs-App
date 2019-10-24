@@ -5,8 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bulma-components/dist/react-bulma-components.min.css';
-
-
+localStorage.clear();
 
 
 ReactDOM.render(<App />, document.getElementById('root'));

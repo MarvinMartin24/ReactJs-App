@@ -13,10 +13,6 @@ import Transaction from "./components/Transaction.js"
 import LogOut from "./components/LogOut.js"
 
 
-
-const user = JSON.parse(localStorage.getItem('user_local'));
-
-
 class App extends Component {
     constructor(props) {
         super(props);

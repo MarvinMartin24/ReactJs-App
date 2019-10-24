@@ -7,8 +7,6 @@ import {transfers} from './json/transfers.js';
 
 
 
-
-
 function success(result) {
     return {
         status: "success",
@@ -20,33 +18,21 @@ function failure(error) {
     return {
         status: "failure",
         error: error
-
     }
 }
 
+//----------- USERS -------------//
+
 function getUserFromEmail(email) {
-    let user = users.find(user => user.email === email);
+    let user = users.find(user => (
+        user.email === email
+    ));
     return user;
 }
 
-
-
-export function getUser(id) {
-    let user = users.find(user => user.id === id);
-    return user;
-}
-
-
-export function getWallet(id) {
-    let object = wallets.find(user => user.user_id === id);
-    return object;
-    console.log(wallets);
-    console.log(object);
-}
-
-//create a list of all existing user ID
 export function existingId() {
-    const localUser = JSON.parse(localStorage.getItem('user_local'));
+
+    let localUser = JSON.parse(localStorage.getItem('user_local'));
 
     let listId = [];
 
@@ -60,12 +46,29 @@ export function existingId() {
             listId.push(user.id);
         }
     }
+
     localStorage.setItem('assigned_id', JSON.stringify(listId));
 }
 
+export function createId() {
+    const listId = JSON.parse(localStorage.getItem('assigned_id'));
+    let newId;
+
+    if(listId === []) {
+        return newId = Math.floor(Math.random() * 1000);
+    } else {
+        return newId = Math.max(...listId) + 1;
+    }
+}
+
+export function getUser(id) {
+    let user = users.find(user => (
+        user.id === id
+    ));
+    return user;
+}
 
 export function createUser(user) {
-
 
     let wallet = {
         id: Math.floor(Math.random() * 1000),
@@ -84,115 +87,67 @@ export function createUser(user) {
     users.push(user);
     cards.push(card);
     wallets.push(wallet);
-    console.log(users);
-    console.log(wallet);
-
 
     }
-
-export function updateCard(newCard) {
-    let  index = cards.findIndex(card => card.id === newCard.id);
-    console.log(cards[index]);
-    cards[index]= newCard;
-    console.log(cards[index]);
-}
 
 export function updateUser(newUser) {
-    let  index = users.findIndex(user => user.user_id === newUser.id);
+    let  index = users.findIndex(user => (
+        user.user_id === newUser.id
+    ));
+
     users[index] = newUser
-    console.log(users);
-
 }
 
-export function updateWallets(walletIdSender, walletIdReceiver, amount) {
-    let  indexSender = wallets.findIndex(wallet => wallet.id === walletIdSender);
-    let  indexReceiver = wallets.findIndex(wallet => wallet.id === walletIdReceiver);
+export function isEmailAvailable(email) {
+    let userExist = users.find(user => (
+        user.email === email
+    ));
 
-    wallets[indexSender].balance -=  amount;
-    wallets[indexReceiver].balance +=  amount;
-
-    console.log(wallets);
-
-}
-
-export function addTransfert(newTransfert){
-    transfers.push(newTransfert);
-    console.log(transfers);
-}
-
-export function addPayOut(newPayOut){
-    payOuts.push(newPayOut);
-    console.log(payOuts);
-}
-
-export function addPayIn(newPayIn){
-    payIns.push(newPayIn);
-    console.log(payIns);
-}
-
-export function withdrawalWallet(walletId, amount){
-    let  index = wallets.findIndex(wallet => wallet.id === walletId);
-    console.log(index);
-    wallets[index].balance -=  amount;
-}
-
-export function depositWallet(walletId, amount){
-    let  index = wallets.findIndex(wallet => wallet.id === walletId);
-    console.log(index);
-    wallets[index].balance +=  amount;
-}
-
-//make sure that the new created user ID is the last known user ID incremented by 1
-export function createId() {
-    const listId = JSON.parse(localStorage.getItem('assigned_id'));
-    let newId;
-
-    if(listId === []) {
-        return newId = Math.floor(Math.random() * 1000);
-    } else {
-        return newId = Math.max(...listId) + 1;
-    }
-}
-
-
-export function addCard(newCard){
-    cards.push(newCard);
-    console.log(cards);
-}
-
-export function removeCard(cardId) {
-    let index = cards.findIndex(card => card.id === cardId);
-    cards.splice(index, 1);
-}
-
-export function getCards(id) {
-    let object = cards.filter(card => card.user_id === id);
-    return object;
-}
-
-
-export function isEmailAvailable(email){
-
-    if(users.find(user => user.email === email)) {
+    if(userExist) {
         return false;
     }
     return true
 }
 
-
 export function authenticate(email, password) {
     for (let user of users) {
-            if (user.email === email && user.password === password) {
+            if ((user.email === email) && (user.password === password)) {
                     return success(user);
                 }
             }
     return failure("user not found, or wrong password");
 }
 
+//----------- WALLETS -----------//
+
+export function getWallet(id) {
+    let object = wallets.find(user => (
+        user.user_id === id
+    ));
+    return object;
+}
+
+export function updateWallets(walletIdSender, walletIdReceiver, amount) {
+
+    let  indexSender = wallets.findIndex(wallet => (
+        wallet.id === walletIdSender
+    ));
+
+    let  indexReceiver = wallets.findIndex(wallet => (
+        wallet.id === walletIdReceiver
+    ));
+
+    wallets[indexSender].balance -=  amount;
+    wallets[indexReceiver].balance +=  amount;
+
+}
+
 export function getWalletIdFromEmail(email){
     let user = getUserFromEmail(email);
     if (user){
-        let wallet = wallets.find(wallet => wallet.user_id === user.id);
+        let wallet = wallets.find(wallet => (
+            wallet.user_id === user.id
+        ));
         return success(wallet.id);
     }
     else {
@@ -203,6 +158,68 @@ export function getWalletIdFromEmail(email){
 
 export function getWalletFromWalletId(walletId){
 
-    var wallet = wallets.find(wallet => wallet.id == walletId);
+    var wallet = wallets.find(wallet => (
+        wallet.id == walletId
+    ));
     return wallet;
+}
+
+//----------- CARDS -------------//
+
+export function updateCard(newCard) {
+    let  index = cards.findIndex(card => (
+        card.id === newCard.id
+    ));
+
+    cards[index]= newCard;
+}
+
+export function addCard(newCard){
+    cards.push(newCard);
+}
+
+export function removeCard(cardId) {
+    let index = cards.findIndex(card => (
+        card.id === cardId
+    ));
+    cards.splice(index, 1);
+}
+
+export function getCards(id) {
+    let object = cards.filter(card => (
+        card.user_id === id
+    ));
+    return object;
+}
+
+//----------- TRANSFERS ---------//
+
+export function addTransfert(newTransfert){
+    transfers.push(newTransfert);
+}
+
+//----------- PAYINS & PAYOUTS -------------//
+
+export function addPayOut(newPayOut){
+    payOuts.push(newPayOut);
+}
+
+export function addPayIn(newPayIn){
+    payIns.push(newPayIn);
+}
+
+export function withdrawalWallet(walletId, amount){
+    let  index = wallets.findIndex(wallet => (
+        wallet.id === walletId
+    ));
+
+    wallets[index].balance -=  amount;
+}
+
+export function depositWallet(walletId, amount){
+    let  index = wallets.findIndex(wallet => (
+        wallet.id === walletId
+    ));
+
+    wallets[index].balance +=  amount;
 }
