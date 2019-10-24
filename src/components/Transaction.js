@@ -40,7 +40,7 @@ class Transaction extends Component {
     render() {
         return (
             <div>
-                Solde: {this.state.wallet.balance}
+                Solde: {this.state.wallet.balance + "$"}
                 {this.state.answer === "Send" && (
                     <Send
                         walletId={this.state.wallet.id}
