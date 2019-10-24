@@ -176,6 +176,13 @@ export function getNewIdTransfer(){
     return idTransfer.toString();
 }
 
+export function getTransfers(wallet_id){
+    let listTransfers = transfers.filter(transfer => (
+        transfer.debited_wallet_id === wallet_id
+    ));
+    return listTransfers;
+}
+
 //----------- PAYINS & PAYOUTS -------------//
 
 export function getNewIdPayIn(){
@@ -194,6 +201,20 @@ export function addPayOut(newPayOut){
 
 export function addPayIn(newPayIn){
     payIns.push(newPayIn);
+}
+
+export function getPayIns(wallet_id){
+    let listPayIns = payIns.filter(payIn => (
+        payIn.wallet_id === wallet_id
+    ));
+    return listPayIns;
+}
+
+export function getPayOuts(wallet_id){
+    let listPayOuts = payOuts.filter(payOut => (
+        payOut.wallet_id === wallet_id
+    ));
+    return listPayOuts;
 }
 
 export function withdrawalWallet(walletId, amount){

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Form } from "react-bootstrap";
 import * as api from '../../services/apiService.js';
 
 
@@ -10,7 +11,8 @@ class Send extends Component {
             id: api.getNewIdTransfer(),
             debited_wallet_id: this.props.walletId,
             credited_wallet_id:'',
-            amount: 0
+            amount: 0,
+            listTransfers: api.getTransfers(this.props.walletId),
         };
     }
 
@@ -29,6 +31,14 @@ class Send extends Component {
             credited_wallet_id: api.getWalletIdFromEmail(event.target.value),
         })
     }
+
+    displayTransfers = () => {
+        const listItems = this.state.listTransfers.map((transfer) =>
+            <li>{transfer}</li>
+        );
+        return <ul>{listItems}</ul>;
+    }
+    
 
     isEmailValid = () => {
 
@@ -83,6 +93,17 @@ class Send extends Component {
                         <br/>
                     <button> Transfer </button>
                 </form>
+                <Form.Group controlId="exampleForm.ControlSelect1">
+                    <Form.Label>Transfers list :</Form.Label>
+                        {
+                            this.state.listTransfers.map((transfer, index) => (
+                                    <option key={index}>
+                                        {"Transfer ID: " + transfer.id + "  /   Debited wallet ID: " + transfer.debited_wallet_id + "   /   Credited wallet ID: " + transfer.credited_wallet_id + 
+                                        "   /   Amount: " + transfer.amount}
+                                    </option>
+                                ))
+                        }
+                </Form.Group>
             </div>
         );
     }

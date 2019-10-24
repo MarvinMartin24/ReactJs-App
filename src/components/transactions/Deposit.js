@@ -18,6 +18,7 @@ class Withdrawal extends Component {
                 brand:'',
                 expired_at:''
             },
+            listPayIns: api.getPayIns(this.props.wallet.id),
             payIn: {
                 id: '',
                 wallet_id:'',
@@ -119,6 +120,16 @@ class Withdrawal extends Component {
                                   ))
                             }
                         </Form.Control>
+                </Form.Group>
+                <Form.Group controlId="exampleForm.ControlSelect1">
+                    <Form.Label>Deposit list: :</Form.Label>
+                        {
+                            this.state.listPayIns.map((payIn, index) => (
+                                    <option key={index}>
+                                        {"Deposit ID: " + payIn.id + "  /   Deposit wallet: " + payIn.wallet_id + "   /   Amount: " + payIn.amount}
+                                    </option>
+                                ))
+                        }
                 </Form.Group>
                     <br/>
                 <form onSubmit={this.deposit}>

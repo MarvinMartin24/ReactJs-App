@@ -67,6 +67,10 @@ export function getNewIdTransfer(){
     return server.getNewIdTransfer();
 }
 
+export function getTransfers(wallet_id){
+    return server.getTransfers(wallet_id);
+}
+
 //----------- PAYINS & PAYOUTS ------//
 
 export function getNewIdPayIn(){
@@ -76,6 +80,14 @@ export function getNewIdPayIn(){
 
 export function getNewIdPayOut(){
     return server.getNewIdPayOut();
+}
+
+export function getPayIns(wallet_id){
+    return server.getPayIns(wallet_id);
+}
+
+export function getPayOuts(wallet_id){
+    return server.getPayOuts(wallet_id);
 }
 
 export function withdrawalWallet(walletId, amount){
