@@ -102,11 +102,12 @@ class Withdrawal extends Component {
               api.addPayIn(this.state.payIn);
               api.depositWallet(this.props.wallet.id, this.state.payIn.amount);
               this.props.onChange()
+              this.setState({
+                  listPayIns: api.getPayIns(this.props.wallet.id)
+              });
               alert("Deposit done !");
           }
-          this.setState({
-            listPayIns: api.getPayIns(this.props.wallet.id),
-        });
+
       }
 
       render() {

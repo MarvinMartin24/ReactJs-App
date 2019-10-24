@@ -129,7 +129,7 @@ export function getWalletIdFromEmail(email){
         let wallet = wallets.find(wallet => (
             wallet.user_id === user.id
         ));
-        return success(wallet.id);
+        return success(wallet.id).result;
     }
     else {
         return failure('Wrong email')

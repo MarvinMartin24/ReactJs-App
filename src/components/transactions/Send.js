@@ -38,11 +38,11 @@ class Send extends Component {
         );
         return <ul>{listItems}</ul>;
     }
-    
+
 
     isEmailValid = () => {
 
-        if ((this.state.credited_wallet_id.status === 'success') && (this.state.credited_wallet_id.result !== this.props.walletId)){
+        if ((this.state.credited_wallet_id !== this.props.walletId) && (this.state.credited_wallet_id.status !== 'failure')){
             return(true);
         }
         else{
@@ -64,20 +64,23 @@ class Send extends Component {
     transfer = (event) => {
         event.preventDefault();
 
-        if ((this.isEmailValid() === true) && (this.isAmountValid() === true)){
+        if ((this.isEmailValid()) && (this.isAmountValid())){
 
             api.addTransfert(this.state);
-            api.updateWallets(this.state.debited_wallet_id, this.state.credited_wallet_id.result, this.state.amount);
+            api.updateWallets(this.state.debited_wallet_id, this.state.credited_wallet_id, this.state.amount);
             this.props.onChange()
+            this.setState({
+                listTransfers: api.getTransfers(this.props.walletId),
+            });
+
             alert('Transaction done !');
         }
 
-        this.setState({
-            listTransfers: api.getTransfers(this.props.walletId),
-        });
+
     }
 
     render() {
+        console.log(this.state);
         return (
             <div>
                 <form onSubmit={this.transfer}>
@@ -102,8 +105,8 @@ class Send extends Component {
                         {
                             this.state.listTransfers.map((transfer, index) => (
                                     <option key={index}>
-                                        {"Transfer ID: " + transfer.id + "  /   Debited wallet ID: " + transfer.debited_wallet_id + "   /   Credited wallet ID: " + 
-                                        transfer.credited_wallet_id.result + "   /   Amount: " + transfer.amount/100}
+                                        {"Transfer ID: " + transfer.id + "  /   Debited wallet ID: " + transfer.debited_wallet_id + "   /   Credited wallet ID: " +
+                                        transfer.credited_wallet_id + "   /   Amount: " + transfer.amount/100}
                                     </option>
                                 ))
                         }

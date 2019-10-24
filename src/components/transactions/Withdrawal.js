@@ -112,11 +112,12 @@ class Withdrawal extends Component {
               api.addPayOut(this.state.payOut);
               api.withdrawalWallet(this.props.wallet.id, this.state.payOut.amount);
               this.props.onChange()
+              this.setState({
+                  listPayOuts: api.getPayOuts(this.props.wallet.id)
+              });
               alert('Withdrawal done !');
           }
-          this.setState({
-            listPayOuts: api.getPayOuts(this.props.wallet.id),
-        });
+
       }
 
       render() {
