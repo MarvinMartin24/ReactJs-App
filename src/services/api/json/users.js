@@ -5,7 +5,6 @@ export const users = [
     last_name:"Martin",
     email:"marvin.martin@gmail.com",
     password:"hello",
-    is_admin:true
   },
   {
     id: "2",
@@ -13,7 +12,6 @@ export const users = [
     last_name:"Martin",
     email:"tim.martin@gmail.com",
     password:"marvin",
-    is_admin:false
 },
 {
   id: "3",
@@ -21,6 +19,5 @@ export const users = [
   last_name:"Tribaudeau",
   email:"helo.tbd@free.com",
   password:"helo",
-  is_admin:false
 }
 ]
