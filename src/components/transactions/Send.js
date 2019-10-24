@@ -7,7 +7,7 @@ class Send extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: Math.random(),
+            id: api.getNewIdTransfer(),
             debited_wallet_id: this.props.walletId,
             credited_wallet_id:'',
             amount: 0

@@ -30,39 +30,6 @@ function getUserFromEmail(email) {
     return user;
 }
 
-export function existingId() {
-
-    let localUser = JSON.parse(localStorage.getItem('user_local'));
-
-    let listId = [];
-
-    if(localUser) {
-        listId.push(localUser.id);
-        for (let user of users) {
-            listId.push(user.id);
-        }
-    } else {
-        for (let user of users) {
-            listId.push(user.id);
-        }
-    }
-
-    localStorage.setItem('assigned_id', JSON.stringify(listId));
-}
-
-export function createId() {
-    const listId = JSON.parse(localStorage.getItem('assigned_id'));
-    let newId;
-
-    if(listId === []) {
-        newId = Math.floor(Math.random() * 1000)
-        return newId;
-    } else {
-        newId = Math.max(...listId) + 1
-        return newId;
-    }
-}
-
 export function getUser(id) {
     let user = users.find(user => (
         user.id === id
@@ -72,25 +39,37 @@ export function getUser(id) {
 
 export function createUser(user) {
 
-    let wallet = {
-        id: Math.floor(Math.random() * 1000),
+    const idUser = users.length + 1
+    const idCard = cards.length + 1
+    const idWallet = wallets.length + 1
+
+    var newUser = {
+        id: idUser.toString(),
+        first_name: user.first_name,
+        last_name: user.last_name,
+        email: user.email,
+        password: user.password
+    };
+
+    var newWallet = {
+        id: idWallet.toString(),
         user_id: user.id,
         balance: 0
     };
 
-    let card = {
-        id: Math.floor(Math.random() * 1000),
+    var newCard = {
+        id: idCard.toString(),
         brand: '',
         last_four: '',
         expires_at: '',
         user_id: ''
     };
 
-    users.push(user);
-    cards.push(card);
-    wallets.push(wallet);
-
-    }
+    users.push(newUser);
+    cards.push(newWallet);
+    wallets.push(newCard);
+    return(newUser);
+}
 
 export function updateUser(newUser) {
     let  index = users.findIndex(user => (
@@ -191,8 +170,23 @@ export function getCards(id) {
 export function addTransfert(newTransfert){
     transfers.push(newTransfert);
 }
+export function getNewIdTransfer(){
+    const idTransfer = transfers.length + 1;
+    console.log(idTransfer.toString());
+    return idTransfer.toString();
+}
 
 //----------- PAYINS & PAYOUTS -------------//
+
+export function getNewIdPayIn(){
+    const idPayIn = payIns.length + 1;
+    return idPayIn.toString();
+}
+
+export function getNewIdPayOut(){
+    const idPayOut = payOuts.length + 1;
+    return idPayOut.toString();
+}
 
 export function addPayOut(newPayOut){
     payOuts.push(newPayOut);

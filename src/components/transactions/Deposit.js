@@ -39,7 +39,7 @@ class Withdrawal extends Component {
         this.setState({
             selectedCard: this.state.listCard[0],
             payIn: {
-                id: Math.floor(Math.random() * 1000),
+                id: api.getNewIdPayIn(),
                 wallet_id:this.props.wallet.id,
                 amount: parseInt(event.target.value),
             }

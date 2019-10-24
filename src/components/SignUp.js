@@ -7,10 +7,8 @@ class SignUp extends Component {
 
     constructor(props) {
         super(props);
-        existingId();
 
         this.state = {
-            id: createId(),
             first_name: '',
             last_name: '',
             email: '',
@@ -37,7 +35,7 @@ class SignUp extends Component {
 
         if (available) {
 
-            api.createUser(signUpUser)
+            signUpUser = api.createUser(signUpUser)
 
             localStorage.setItem('user_local', JSON.stringify(signUpUser));
 

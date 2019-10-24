@@ -1,17 +1,17 @@
 export const wallets = [
     {
-           id: "2424",
-           user_id:"1234",
+           id: "1",
+           user_id:"1",
            balance:1500
     },
     {
-           id: "2434",
-           user_id:"2345",
+           id: "2",
+           user_id:"2",
            balance:2000
     },
     {
-           id: "2727",
-           user_id:"3456",
+           id: "3",
+           user_id:"3",
            balance:4000
     }
 

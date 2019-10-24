@@ -24,14 +24,6 @@ export function getUser(id){
     return server.getUser(id);
 }
 
-export function existingId() {
-    return server.existingId();
-}
-
-export function createId() {
-    return server.createId();
-}
-
 //----------- CARDS -----------------//
 
 export function updateCard(newCard){
@@ -71,7 +63,20 @@ export function addTransfert(newTransfert){
     return server.addTransfert(newTransfert);
 }
 
+export function getNewIdTransfer(){
+    return server.getNewIdTransfer();
+}
+
 //----------- PAYINS & PAYOUTS ------//
+
+export function getNewIdPayIn(){
+    return server.getNewIdPayIn();
+
+}
+
+export function getNewIdPayOut(){
+    return server.getNewIdPayOut();
+}
 
 export function withdrawalWallet(walletId, amount){
     return server.withdrawalWallet(walletId, amount);

@@ -1,6 +1,6 @@
 export const users = [
   {
-    id: "1234",
+    id: "1",
     first_name:"Marvin",
     last_name:"Martin",
     email:"marvin.martin@gmail.com",
@@ -8,7 +8,7 @@ export const users = [
     is_admin:true
   },
   {
-    id: "2345",
+    id: "2",
     first_name:"Tim",
     last_name:"Martin",
     email:"tim.martin@gmail.com",
@@ -16,7 +16,7 @@ export const users = [
     is_admin:false
 },
 {
-  id: "3456",
+  id: "3",
   first_name:"Heloise",
   last_name:"Tribaudeau",
   email:"helo.tbd@free.com",
