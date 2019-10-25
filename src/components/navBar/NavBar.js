@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import logo from '../../logo.png';
 import { Link } from 'react-router-dom';
-import logo from '../logo.png';
+import './NavBar.css';
 
 
-class NavBar2 extends Component {
+
+class NavBar extends Component {
+
     render() {
 
         return (
@@ -15,16 +18,14 @@ class NavBar2 extends Component {
                         alt="logo"
                     />
                 </header>
-                <Link to="/Home"> Home </Link>
-                    <br/>
-                <Link to="Modify"> Modify </Link>
-                    <br/>
-                <Link to="/Transaction"> Transaction </Link>
-                    <br/>
-                <Link to="/LogOut"> Log Out </Link>
+                <ul>
+                    <li><Link to="/"> Welcome </Link></li>
+                    <li><Link to="/LogIn"> Log In </Link></li>
+                    <li><Link to="/SignUp"> Sign Up  </Link></li>
+                </ul>
             </div>
         );
     }
 }
 
-export default NavBar2;
+export default NavBar;

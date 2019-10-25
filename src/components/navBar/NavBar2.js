@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import logo from '../logo.png';
 import { Link } from 'react-router-dom';
+import logo from '../../logo.png';
+import './NavBar.css';
 
 
-class NavBar extends Component {
 
+class NavBar2 extends Component {
     render() {
 
         return (
@@ -16,15 +17,15 @@ class NavBar extends Component {
                         alt="logo"
                     />
                 </header>
-
-                <Link to="/"> Welcome </Link>
-                    <br/>
-                <Link to="/LogIn"> Log In </Link>
-                    <br/>
-                <Link to="/SignUp"> Sign Up  </Link>
+                <ul>
+                    <li><Link to="/Home"> Home </Link></li>
+                    <li><Link to="Modify"> Modify </Link></li>
+                    <li><Link to="/Transaction"> Transaction </Link></li>
+                    <li><Link to="/LogOut"> Log Out </Link></li>
+                </ul>
             </div>
         );
     }
 }
 
-export default NavBar;
+export default NavBar2;

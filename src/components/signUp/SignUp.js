@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import * as api from '../services/apiService.js';
-import { existingId, createId } from '../services/api/server.js';
+import * as api from '../../services/apiService.js';
+import './SignUp.css';
+
 
 
 class SignUp extends Component {
@@ -53,11 +54,12 @@ class SignUp extends Component {
     render() {
 
         return (
-            <div >
+            <div className="sign-up-form">
                 <form onSubmit={this.submit}>
                     <label>First Name:</label>
                     <input
                         id="first_name"
+                        className="sign-up-input"
                         type="text"
                         onChange={this.handleChange}
                     />
@@ -65,6 +67,7 @@ class SignUp extends Component {
                     <label>Last Name:</label>
                     <input
                         id="last_name"
+                        className="sign-up-input"
                         type="text"
                         onChange={this.handleChange}
                     />
@@ -72,6 +75,7 @@ class SignUp extends Component {
                     <label>Email:</label>
                     <input
                         id="email"
+                        className={"sign-up-input"}
                         type="text"
                         onChange={this.handleChange}
                     />
@@ -79,11 +83,13 @@ class SignUp extends Component {
                     <label>Password:</label>
                     <input
                         id="password"
+                        className="sign-up-input"
                         type="password"
                         onChange={this.handleChange}
                     />
                         <br/>
-                    <button >Create Account</button>
+                        <br/>
+                    <button className="sign-up-button">Create Account</button>
                 </form>
             </div>
         );

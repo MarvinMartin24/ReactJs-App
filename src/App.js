@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from "react-router-dom"
+import './App.css';
 
 
-import NavBar from "./components/NavBar.js"
-import NavBar2 from "./components/NavBar2.js"
+import NavBar from "./components/navBar/NavBar.js"
+import NavBar2 from "./components/navBar/NavBar2.js"
 
-import SignUp from "./components/SignUp.js"
-import LogIn from "./components/LogIn.js"
+import SignUp from "./components/signUp/SignUp.js"
+import LogIn from "./components/logIn/LogIn.js"
 
 import Modify from "./components/Modify.js"
 import Transaction from "./components/Transaction.js"
@@ -43,36 +44,34 @@ class App extends Component {
       }
 
 
-
-
   render() {
 
       if (this.state.view === 'NavBar')
       {
           return(
-              <BrowserRouter>
-                  <NavBar/>
-                    <div>
-                        <br/>
+              <div className="root-container">
+                  <BrowserRouter>
+                      <NavBar/>
+                      <Route exact path="/SignUp" component ={SignUp}/>
+                      <Route exact path="/LogIn"  render={(props) => <LogIn {...props} view={this.onChangeView} />} />
+                  </BrowserRouter>
+              </div>
 
-                        Welcome to Watermelon !
-                    </div>
-                    <br/>
-                  <Route exact path="/SignUp" component ={SignUp}/>
-                  <Route exact path="/LogIn"  render={(props) => <LogIn {...props} view={this.onChangeView} />} />
-              </BrowserRouter>
           )
       }
 
       if (this.state.view === 'NavBar2'){
 
           return(
-              <BrowserRouter>
-                <NavBar2/>
-                  <Route exact path="/Modify" component ={Modify}/>
-                  <Route exact path="/Transaction" component ={Transaction}/>
-                  <Route exact path="/LogOut" render={(props) => <LogOut {...props} view={this.onChangeView} />} />
-              </BrowserRouter>
+              <div className="root-container">
+                  <BrowserRouter>
+                    <NavBar2/>
+                      <Route exact path="/Modify" component ={Modify}/>
+                      <Route exact path="/Transaction" component ={Transaction}/>
+                      <Route exact path="/LogOut" render={(props) => <LogOut {...props} view={this.onChangeView} />} />
+                  </BrowserRouter>
+              </div>
+
           )
       }
 

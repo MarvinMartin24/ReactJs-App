@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import * as api from '../services/apiService.js';
+import * as api from '../../services/apiService.js';
+import './LogIn.css';
+
 
 
 class LogIn extends Component {
@@ -62,11 +64,12 @@ class LogIn extends Component {
     render() {
 
         return (
-            <div >
+            <div className="log-in-form">
                 <form onSubmit={this.login}>
                     <label>Email:</label>
                     <input
                         id="email"
+                        className="log-in-input"
                         type="text"
                         value={this.state.email}
                         onChange={this.handleChange}
@@ -75,12 +78,14 @@ class LogIn extends Component {
                     <label>Password:</label>
                     <input
                         id="password"
+                        className="log-in-input"
                         type="password"
                         value={this.state.password}
                         onChange={this.handleChange}
                     />
                         <br/>
-                    <button >Login</button>
+                        <br/>
+                    <button className="log-in-button">Login</button>
                 </form>
             </div>
         );

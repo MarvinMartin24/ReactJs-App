@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../services/apiService.js';
+import './Modify.css';
+
 
 
 class Card extends Component {
@@ -48,33 +50,38 @@ class Card extends Component {
     render() {
 
         return (
-            <form onSubmit={this.submitModifyCard}>
-                <label> Card Number: </label>
-                <input
-                    name="last_4"
-                    type="text"
-                    value={this.state.last_4}
-                    onChange={this.handleChangeCard}
-                />
-                    <br/>
-                <label> Brand: </label>
-                <input
-                    name="brand"
-                    type="text"
-                    value={this.state.brand}
-                    onChange={this.handleChangeCard}
-                />
-                    <br/>
-                <label> Expired Date: </label>
-                <input
-                    name="expired_at"
-                    type="text"
-                    value={this.state.expired_at}
-                    onChange={this.handleChangeCard}
-                />
-                    <br/>
-                <button > Modify </button>
-          </form>
+            <div className="modify-form">
+                <form onSubmit={this.submitModifyCard}>
+                    <label> Card Number: </label>
+                    <input
+                        name="last_4"
+                        className="modify-input"
+                        type="text"
+                        value={this.state.last_4}
+                        onChange={this.handleChangeCard}
+                    />
+                        <br/>
+                    <label> Brand: </label>
+                    <input
+                        name="brand"
+                        className="modify-input"
+                        type="text"
+                        value={this.state.brand}
+                        onChange={this.handleChangeCard}
+                    />
+                        <br/>
+                    <label> Expired Date: </label>
+                    <input
+                        name="expired_at"
+                        className="modify-input"
+                        type="text"
+                        value={this.state.expired_at}
+                        onChange={this.handleChangeCard}
+                    />
+                        <br/>
+                    <button className="modify-button"> Modify </button>
+              </form>
+            </div>
       );
   }
 }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Card from './Card.js'
 import * as api from '../services/apiService.js';
+import './Modify.css';
+
 
 
 class Modify extends Component {
@@ -78,11 +80,12 @@ class Modify extends Component {
                         card={card}
                     />
                     <button
+                        className="modify-button"
                         onClick={() => { this.remove(card); }}
                     > Remove </button>
                 </div>
             ));
-            return <ul> {listCard} </ul>;
+            return <div className="modify-form"> {listCard} </div>;
         }
     }
 
@@ -112,50 +115,55 @@ class Modify extends Component {
 
         return (
             <div>
-                <form
-                    onSubmit={this.submitModifyUser}>
-                    <label>First Name:</label>
-                    <input
-                        name="first_name"
-                        type="text"
-                        value={this.state.user.first_name}
-                        onChange={this.handleChangeUser}
-                    />
-                        <br/>
-                    <label>Last Name:</label>
-                    <input
-                        name="last_name"
-                        type="text"
-                        value={this.state.user.last_name}
-                        onChange={this.handleChangeUser}
-                    />
-                        <br/>
-                    <label>Email:</label>
-                    <input
-                        name="email"
-                        type="text"
-                        value={this.state.user.email}
-                        onChange={this.handleChangeUser}
-                    />
-                        <br/>
-                    <label>Password:</label>
-                    <input
-                        name="password"
-                        type="password"
-                        value={this.state.user.password}
-                        onChange={this.handleChangeUser}
-                    />
-                        <br/>
-                    <button >Modify</button>
-                </form>
-                    <br/>
+                <div className="modify-form">
+                    <form
+                        onSubmit={this.submitModifyUser}>
+                        <label>First Name:</label>
+                        <input
+                            name="first_name"
+                            className="modify-input"
+                            type="text"
+                            value={this.state.user.first_name}
+                            onChange={this.handleChangeUser}
+                        />
+                            <br/>
+                        <label>Last Name:</label>
+                        <input
+                            name="last_name"
+                            className="modify-input"
+                            type="text"
+                            value={this.state.user.last_name}
+                            onChange={this.handleChangeUser}
+                        />
+                            <br/>
+                        <label>Email:</label>
+                        <input
+                            name="email"
+                            className="modify-input"
+                            type="text"
+                            value={this.state.user.email}
+                            onChange={this.handleChangeUser}
+                        />
+                            <br/>
+                        <label>Password:</label>
+                        <input
+                            name="password"
+                            className="modify-input"
+                            type="password"
+                            value={this.state.user.password}
+                            onChange={this.handleChangeUser}
+                        />
+                            <br/>
+                        <button className="modify-button">Modify</button>
+                    </form>
+                </div>
                 { this.displayCards() }
-                    <br/>
-                <ul>
+                <div className="modify-form">
                     <form onSubmit={this.submitAddCard}>
                         <label>Card Number:</label>
                         <input
                             name="last_4"
+                            className="modify-input"
                             type="text"
                             onChange={this.handleChangeAddCard}
                         />
@@ -163,6 +171,7 @@ class Modify extends Component {
                         <label>Brand:</label>
                         <input
                             name="brand"
+                            className="modify-input"
                             type="text"
                             onChange={this.handleChangeAddCard}
                         />
@@ -170,13 +179,14 @@ class Modify extends Component {
                         <label>Expired Date:</label>
                         <input
                             name="expired_at"
+                            className="modify-input"
                             type="text"
                             onChange={this.handleChangeAddCard}
                         />
                             <br/>
-                        <button> Add </button>
+                        <button className="modify-button"> Add </button>
                     </form>
-                </ul>
+                </div>
             </div>
         );
     }
