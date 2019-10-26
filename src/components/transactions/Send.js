@@ -96,20 +96,22 @@ class Send extends Component {
         return (
             <div>
                 <form className="send-form" onSubmit={this.transfer}>
-                    <label> Amount: </label>
+                    <label className="text2-transfers"> Amount </label>
                     <input
                         id="amount"
                         className="send-input"
                         type="number"
                         onChange={this.handleChangeAmount}
                     />
-                    <label> Email: </label>
+                    <label className="text3-transfers"> Email </label>
                     <input
                         id="credited_wallet_id"
                         className="send-input"
                         type="text"
                         onChange={this.handleChangeCredit}
                     />
+                    <br/>
+                    <br/>
                     <button className="send-button"> Transfer </button>
                 </form>
                 <div className="display-page">

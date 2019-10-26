@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Form } from 'react-bootstrap';
 import * as api from '../../services/apiService.js';
+import './Deposit.css';
 
 
 
-class Withdrawal extends Component {
+class Deposit extends Component {
 
     constructor(props) {
         super(props);
@@ -110,42 +111,50 @@ class Withdrawal extends Component {
 
       render() {
           return (
-              <div>
-                <Form.Group controlId="exampleForm.ControlSelect1">
-                    <Form.Label>select Card</Form.Label>
-                        <Form.Control as="select" onChange={this.handleSelectCard}>
+                <div>
+                  <div className="deposit-form">
+                    <Form.Group controlId="exampleForm.ControlSelect1">
+                        <Form.Label className="text2-payin">Select Card</Form.Label>
+                            <Form.Control as="select" onChange={this.handleSelectCard}>
+                                {
+                                    this.state.listCard.map((card, index) => (
+                                          <option key={index}>
+                                              {card.brand + " xxxxxxxx" + card.last_4 + "    (Expired date: " + card.expired_at + ")"}
+                                          </option>
+                                      ))
+                                }
+                            </Form.Control>
+                    </Form.Group>
+                    <form onSubmit={this.deposit}>
+                        <label className="text3-payin">Amount</label>
+                        <input
+                            id="amount"
+                            className="deposit-input"
+                            type="number"
+                            onChange={this.handleChangeAmount}
+                        />
+                        <br/>
+                        <br/>
+                        <button className="deposit-button"> Deposit </button>
+                    </form>
+                </div>
+                <div className="display-page">
+                    <div className="display-form">
+                    <Form.Group controlId="exampleForm.ControlSelect1">
+                        <Form.Label className="text-payin">Deposit</Form.Label>
                             {
-                                this.state.listCard.map((card, index) => (
-                                      <option key={index}>
-                                          {card.brand + " xxxxxxxx" + card.last_4 + "    (Expired date: " + card.expired_at + ")"}
-                                      </option>
-                                  ))
+                                this.state.listPayIns.map((payIn, index) => (
+                                        <option key={index}>
+                                            {"Deposit ID: " + payIn.id + "  /   Deposit wallet: " + payIn.wallet_id + "   /   Amount: " + payIn.amount/100}
+                                        </option>
+                                    ))
                             }
-                        </Form.Control>
-                </Form.Group>
-                <Form.Group controlId="exampleForm.ControlSelect1">
-                    <Form.Label>Deposit list: :</Form.Label>
-                        {
-                            this.state.listPayIns.map((payIn, index) => (
-                                    <option key={index}>
-                                        {"Deposit ID: " + payIn.id + "  /   Deposit wallet: " + payIn.wallet_id + "   /   Amount: " + payIn.amount/100}
-                                    </option>
-                                ))
-                        }
-                </Form.Group>
-                    <br/>
-                <form onSubmit={this.deposit}>
-                    <label>Amount:</label>
-                    <input
-                        id="amount"
-                        type="number"
-                        onChange={this.handleChangeAmount}
-                    />
-                    <button> Deposit </button>
-                </form>
+                    </Form.Group>
+                    </div>
+                </div>
             </div>
         );
     }
 }
 
-export default Withdrawal;
+export default Deposit;

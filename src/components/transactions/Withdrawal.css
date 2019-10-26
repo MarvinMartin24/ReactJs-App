@@ -2,28 +2,28 @@
     background-color: #D9F3B7 ;
 }
 
-.text-transfers {
+.text-payin {
     margin-left: 355px;
     font-weight: bold;
     font-size: 1em;
 }
 
-.text2-transfers {
-    margin-left: 97px;
+.text2-payin {
+    margin-left: 170px;
     font-size: 1em;
 }
 
-.text3-transfers {
-    margin-left: 105px;
+.text3-payin {
+    margin-left: 180px;
     font-size: 1em;
 }
 
-.send-form {
-    display: block;
+.deposit-form {
+    display:block;
     align-items: center;
     justify-content: center;
-    width: 250px;
-    height: 185px;
+    width: 430px;
+    height: 205px;
     margin-bottom: 0px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 5px;
@@ -46,21 +46,21 @@
 
 }
 
-.send-input {
+.deposit-input {
     border-radius: 5px;
+    width: 422px;
     border: medium;
-    width: 240px;
     padding: 1px;
     margin-left:5px;
 }
 
 
-.send-button {
+.deposit-button {
     background-color: #3FAE76;
     border-radius: 5px;
-    margin-left: 10px;
+    margin-left: 57px;
     color: white;
-    width: 92%;
-    padding: 5px 22px;
+    width: 75%;
+    padding: 2px 12px;
 
 }

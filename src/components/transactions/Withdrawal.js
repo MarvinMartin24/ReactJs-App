@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Form } from "react-bootstrap";
 import * as api from '../../services/apiService.js';
+import './Withdrawal.css';
+
 
 
 
@@ -121,40 +123,48 @@ class Withdrawal extends Component {
 
       render() {
           return (
-              <div >
-                <Form.Group controlId="exampleForm.ControlSelect1">
-                    <Form.Label>select Card</Form.Label>
-                        <Form.Control as="select" onChange={this.handleSelectCard}>
-                            {
-                                this.state.listCard.map((card, index) => (
+              <div>
+                <div className="deposit-form">
+                  <Form.Group controlId="exampleForm.ControlSelect1">
+                      <Form.Label className="text2-payin">Select Card</Form.Label>
+                          <Form.Control as="select" onChange={this.handleSelectCard}>
+                              {
+                                  this.state.listCard.map((card, index) => (
+                                        <option key={index}>
+                                            {card.brand + " xxxxxxxx" + card.last_4 + "    (Expired date: " + card.expired_at + ")"}
+                                        </option>
+                                    ))
+                              }
+                          </Form.Control>
+                  </Form.Group>
+                  <form onSubmit={this.withdrawal}>
+                      <label className="text3-payin">Amount</label>
+                      <input
+                          id="amount"
+                          className="deposit-input"
+                          type="number"
+                          onChange={this.handleChangeAmount}
+                      />
+                      <br/>
+                      <br/>
+                      <button className="deposit-button"> Withdrawal </button>
+                  </form>
+              </div>
+              <div className="display-page">
+                  <div className="display-form">
+                  <Form.Group controlId="exampleForm.ControlSelect1">
+                      <Form.Label className="text-payin">Withdrawal</Form.Label>
+                          {
+                              this.state.listPayOuts.map((payOut, index) => (
                                       <option key={index}>
-                                          {card.brand + " xxxxxxxx" + card.last_4 + "    (Expired date: " + card.expired_at + ")"}
+                                          {"Withdrawal ID: " + payOut.id + "  /   Withdrawal wallet: " + payOut.wallet_id + "   /   Amount: " + payOut.amount/100}
                                       </option>
                                   ))
-                            }
-                        </Form.Control>
-                </Form.Group>
-                <Form.Group controlId="exampleForm.ControlSelect1">
-                    <Form.Label>Withdrawal list: :</Form.Label>
-                        {
-                            this.state.listPayOuts.map((payOut, index) => (
-                                    <option key={index}>
-                                        {"Withdrawal ID: " + payOut.id + "  /   Withdrawal wallet: " + payOut.wallet_id + "   /   Amount: " + payOut.amount/100}
-                                    </option>
-                                ))
-                        }
-                </Form.Group>
-                    <br/>
-                <form onSubmit={this.withdrawal}>
-                    <label>Amount:</label>
-                    <input
-                        id="amount"
-                        type="number"
-                        onChange={this.handleChangeAmount}
-                    />
-                    <button >Withdrawal</button>
-                </form>
-            </div>
+                          }
+                  </Form.Group>
+                  </div>
+              </div>
+          </div>
       );
     }
 }

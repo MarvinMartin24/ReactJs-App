@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './LogOut.css';
 
 
 class LogOut extends Component {
@@ -19,10 +20,16 @@ class LogOut extends Component {
 
     render() {
         return (
-            <div> Are you sure to log out ?
-                <button onClick={this.exit}>yes</button>
-                <button onClick={this.stay}>no</button>
+            <div>
+                <br/>
+                    <div className="text-logout"> Are you sure to log out ?
+                <br/>
+                    <br/>
+                        <button className="logout-yes-button" onClick={this.exit}>yes</button>
+                        <button className="logout-no-button" onClick={this.stay}>no</button>
+                </div>
             </div>
+
         );
     }
 }
