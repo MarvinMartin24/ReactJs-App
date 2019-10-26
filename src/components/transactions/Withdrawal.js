@@ -9,14 +9,8 @@ class Withdrawal extends Component {
         super(props);
         this.state = {
             user: JSON.parse(localStorage.getItem('user_local')),
-            listCard: [],
-            selectedCard: {
-                user_id: '',
-                id:'',
-                last_4:'',
-                brand:'',
-                expired_at:''
-            },
+            listCard: api.getCards(JSON.parse(localStorage.getItem('user_local')).id),
+            selectedCard: api.getCards(JSON.parse(localStorage.getItem('user_local')).id)[0],
             listPayOuts: api.getPayOuts(this.props.wallet.id),
             payOut: {
                 id: api.getNewIdPayOut(),
@@ -36,7 +30,6 @@ class Withdrawal extends Component {
         event.preventDefault();
 
         this.setState({
-            selectedCard: this.state.listCard[0],
             payOut: {
                 id: this.state.payOut.id,
                 wallet_id:this.props.wallet.id,

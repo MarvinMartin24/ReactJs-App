@@ -10,14 +10,8 @@ class Withdrawal extends Component {
         super(props);
         this.state = {
             user: JSON.parse(localStorage.getItem('user_local')),
-            listCard: [],
-            selectedCard: {
-                user_id: '',
-                id:'',
-                last_4:'',
-                brand:'',
-                expired_at:''
-            },
+            listCard: api.getCards(JSON.parse(localStorage.getItem('user_local')).id),
+            selectedCard: api.getCards(JSON.parse(localStorage.getItem('user_local')).id)[0],
             listPayIns: api.getPayIns(this.props.wallet.id),
             payIn: {
                 id: api.getNewIdPayIn(),
@@ -30,6 +24,7 @@ class Withdrawal extends Component {
     componentDidMount() {
 
         this.setState({
+            selectedCard: this.state.listCard[0],
             listCard: api.getCards(this.state.user.id),
         });
     }
@@ -38,7 +33,6 @@ class Withdrawal extends Component {
         event.preventDefault();
 
         this.setState({
-            selectedCard: this.state.listCard[0],
             payIn: {
                 id: this.state.payIn.id,
                 wallet_id:this.props.wallet.id,
@@ -90,14 +84,13 @@ class Withdrawal extends Component {
             }
         }
         alert('Card expired!');
-          return(false);
+        return(false);
       }
 
 
       deposit = (event) => {
 
           event.preventDefault();
-
           if (this.isCardValid()) {
               api.addPayIn(this.state.payIn);
               api.depositWallet(this.props.wallet.id, this.state.payIn.amount);
@@ -116,6 +109,7 @@ class Withdrawal extends Component {
       }
 
       render() {
+          console.log(this.state);
           return (
               <div>
                 <Form.Group controlId="exampleForm.ControlSelect1">
