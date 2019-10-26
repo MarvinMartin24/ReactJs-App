@@ -2,6 +2,12 @@
     background-color: #D9F3B7 ;
 }
 
+.text-transfers {
+    margin-left: 355px;
+    font-weight: bold;
+    font-size: 1em;
+}
+
 .send-form {
     display:grid;
     align-items: center;
