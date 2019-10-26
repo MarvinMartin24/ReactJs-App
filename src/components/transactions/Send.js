@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Form } from "react-bootstrap";
 import * as api from '../../services/apiService.js';
+import './Send.css';
+
 
 
 
@@ -83,10 +85,11 @@ class Send extends Component {
         console.log(this.state);
         return (
             <div>
-                <form onSubmit={this.transfer}>
+                <form className="send-form" onSubmit={this.transfer}>
                     <label> Amount: </label>
                     <input
                         id="amount"
+                        className="send-input"
                         type="number"
                         onChange={this.handleChangeAmount}
                     />
@@ -94,6 +97,7 @@ class Send extends Component {
                     <label> Email: </label>
                     <input
                         id="credited_wallet_id"
+                        className="send-input"
                         type="text"
                         onChange={this.handleChangeCredit}
                     />

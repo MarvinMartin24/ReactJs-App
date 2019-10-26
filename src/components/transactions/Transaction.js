@@ -3,6 +3,7 @@ import Send from "./Send.js";
 import Deposit from "./Deposit.js";
 import Withdrawal from "./Withdrawal.js";
 import * as api from '../../services/apiService.js';
+import './Transaction.css';
 
 
 class Transaction extends Component {
@@ -40,7 +41,17 @@ class Transaction extends Component {
     render() {
         return (
             <div>
-                Solde: {this.state.wallet.balance/100 + "$"}
+                <br/>
+                <button className="transaction-button" onClick={this.changeSection} name="Send"> Send </button>
+                <button className="transaction-button" onClick={this.changeSection} name="Deposit"> Deposit </button>
+                <button className="transaction-button" onClick={this.changeSection} name="Withdrawal"> Withdrawal </button>
+                    <br/>
+                    <br/>
+                <div className="solde">
+                    Solde: {this.state.wallet.balance/100 + "$"}
+                </div>
+                    <br/>
+
                 {this.state.answer === "Send" && (
                     <Send
                         walletId={this.state.wallet.id}
@@ -62,11 +73,6 @@ class Transaction extends Component {
                         onChange={this.updateSolde}
                     />
                 )}
-                    <br/>
-                    <br/>
-                <button onClick={this.changeSection} name="Send"> Send </button>
-                <button onClick={this.changeSection} name="Deposit"> Deposit </button>
-                <button onClick={this.changeSection} name="Withdrawal"> Withdrawal </button>
             </div>
         );
     }
