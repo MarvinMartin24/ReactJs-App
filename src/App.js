@@ -9,9 +9,9 @@ import NavBar2 from "./components/navBar/NavBar2.js"
 import SignUp from "./components/signUp/SignUp.js"
 import LogIn from "./components/logIn/LogIn.js"
 
-import Modify from "./components/Modify.js"
-import Transaction from "./components/Transaction.js"
-import LogOut from "./components/LogOut.js"
+import Modify from "./components/modify/Modify.js"
+import Transaction from "./components/transactions/Transaction.js"
+import LogOut from "./components/logIn/LogOut.js"
 
 
 class App extends Component {

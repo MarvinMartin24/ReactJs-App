@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as api from '../services/apiService.js';
+import * as api from '../../services/apiService.js';
 import './Modify.css';
 
 

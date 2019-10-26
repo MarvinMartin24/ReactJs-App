@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Send from "./transactions/Send.js";
-import Deposit from "./transactions/Deposit.js";
-import Withdrawal from "./transactions/Withdrawal.js";
-import * as api from '../services/apiService.js';
+import Send from "./Send.js";
+import Deposit from "./Deposit.js";
+import Withdrawal from "./Withdrawal.js";
+import * as api from '../../services/apiService.js';
 
 
 class Transaction extends Component {
