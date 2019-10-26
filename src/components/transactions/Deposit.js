@@ -62,31 +62,37 @@ class Deposit extends Component {
 
     isCardValid = () => {
 
-        var cardDate = this.state.selectedCard.expired_at.split('-')
-        var yyyy = parseInt(cardDate[0]);
-        var mm = parseInt(cardDate[1]);
-        var dd = parseInt(cardDate[2]);
-
-        if( yyyy > this.getTodayDate()[0]) {
-            return(true);
+        if (!(Array.isArray(this.state.listCard) && (this.state.listCard.length))){
+            alert('No Card registered !');
+            return (false);
         }
         else {
-            if(yyyy === this.getTodayDate()[0]) {
-                if(mm > this.getTodayDate()[1]){
-                    return(true);
-                }
-                else {
-                    if(mm === this.getTodayDate()[1]){
-                        if(dd > this.getTodayDate()[2]){
-                            return(true);
+            var cardDate = this.state.selectedCard.expired_at.split('-')
+            var yyyy = parseInt(cardDate[0]);
+            var mm = parseInt(cardDate[1]);
+            var dd = parseInt(cardDate[2]);
+
+            if( yyyy > this.getTodayDate()[0]) {
+                return(true);
+            }
+            else {
+                if(yyyy === this.getTodayDate()[0]) {
+                    if(mm > this.getTodayDate()[1]){
+                        return(true);
+                    }
+                    else {
+                        if(mm === this.getTodayDate()[1]){
+                            if(dd > this.getTodayDate()[2]){
+                                return(true);
+                            }
                         }
                     }
                 }
             }
+            alert('Card expired!');
+            return(false);
         }
-        alert('Card expired!');
-        return(false);
-      }
+     }
 
 
       deposit = (event) => {
