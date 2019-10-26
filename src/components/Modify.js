@@ -85,7 +85,7 @@ class Modify extends Component {
                     > Remove </button>
                 </div>
             ));
-            return <div className="modify-form"> {listCard} </div>;
+            return <div className="card-form"> {listCard} </div>;
         }
     }
 
@@ -114,7 +114,7 @@ class Modify extends Component {
     render() {
 
         return (
-            <div>
+            <div className="modify-page">
                 <div className="modify-form">
                     <form
                         onSubmit={this.submitModifyUser}>
