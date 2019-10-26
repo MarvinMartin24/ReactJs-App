@@ -53,7 +53,7 @@ export function createUser(user) {
 
     var newWallet = {
         id: idWallet.toString(),
-        user_id: user.id,
+        user_id: newUser.id,
         balance: 0
     };
 
@@ -66,8 +66,8 @@ export function createUser(user) {
     };
 
     users.push(newUser);
-    cards.push(newWallet);
-    wallets.push(newCard);
+    cards.push(newCard);
+    wallets.push(newWallet);
     return(newUser);
 }
 

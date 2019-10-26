@@ -10,11 +10,7 @@ class Transaction extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            wallet: {
-                id: '',
-                user_id: JSON.parse(localStorage.getItem('user_local')).id,
-                balance:0
-            },
+            wallet: api.getWallet(JSON.parse(localStorage.getItem('user_local')).id),
             answer: ''
         };
     }
