@@ -93,7 +93,6 @@ class Send extends Component {
                         type="number"
                         onChange={this.handleChangeAmount}
                     />
-                        <br/>
                     <label> Email: </label>
                     <input
                         id="credited_wallet_id"
@@ -101,20 +100,23 @@ class Send extends Component {
                         type="text"
                         onChange={this.handleChangeCredit}
                     />
-                        <br/>
-                    <button> Transfer </button>
+                    <button className="send-button"> Transfer </button>
                 </form>
-                <Form.Group controlId="exampleForm.ControlSelect1">
-                    <Form.Label>Transfers list :</Form.Label>
-                        {
-                            this.state.listTransfers.map((transfer, index) => (
-                                    <option key={index}>
-                                        {"Transfer ID: " + transfer.id + "  /   Debited wallet ID: " + transfer.debited_wallet_id + "   /   Credited wallet ID: " +
-                                        transfer.credited_wallet_id + "   /   Amount: " + transfer.amount/100}
-                                    </option>
-                                ))
-                        }
-                </Form.Group>
+                <div className="display-page">
+                    <div className="display-form">
+                        <Form.Group controlId="exampleForm.ControlSelect1">
+                            <Form.Label>Transfers list :</Form.Label>
+                                {
+                                    this.state.listTransfers.map((transfer, index) => (
+                                            <option key={index}>
+                                                {"Transfer ID: " + transfer.id + "  /   Debited wallet ID: " + transfer.debited_wallet_id + "   /   Credited wallet ID: " +
+                                                transfer.credited_wallet_id + "   /   Amount: " + transfer.amount/100}
+                                            </option>
+                                        ))
+                                }
+                        </Form.Group>
+                    </div>
+                </div>
             </div>
         );
     }

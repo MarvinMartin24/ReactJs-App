@@ -109,7 +109,6 @@ class Withdrawal extends Component {
       }
 
       render() {
-          console.log(this.state);
           return (
               <div>
                 <Form.Group controlId="exampleForm.ControlSelect1">
