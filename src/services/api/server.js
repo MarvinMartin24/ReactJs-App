@@ -178,7 +178,7 @@ export function getNewIdTransfer(){
 
 export function getTransfers(wallet_id){
     let listTransfers = transfers.filter(transfer => (
-        transfer.debited_wallet_id === wallet_id
+        transfer.debited_wallet_id === wallet_id || transfer.credited_wallet_id === wallet_id
     ));
     return listTransfers;
 }
