@@ -42,7 +42,7 @@ class Transaction extends Component {
         return (
             <div>
                 <br/>
-                <button className="transaction-button" onClick={this.changeSection} name="Send"> Send </button>
+                <button className="transaction-first-button" onClick={this.changeSection} name="Send"> Send </button>
                 <button className="transaction-button" onClick={this.changeSection} name="Deposit"> Deposit </button>
                 <button className="transaction-button" onClick={this.changeSection} name="Withdrawal"> Withdrawal </button>
                     <br/>

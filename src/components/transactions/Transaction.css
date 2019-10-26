@@ -1,14 +1,26 @@
 .solde {
-    margin-left: 395px;
+    margin-left: 815px;
     font-weight: bold;
     font-size: 2em;
+}
+
+.transaction-first-button {
+    margin-left: 665px;
+    background-color: #F6836C;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    width: 150px;
+    height: 55px;
+    padding: 15px 32px;
+
 }
 
 .transaction-button {
     background-color: #F6836C;
     border-radius: 5px;
     align-items: center;
-    margin-left: 125px;
     justify-content: center;
     color: white;
     width: 150px;
