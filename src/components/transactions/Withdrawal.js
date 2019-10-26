@@ -123,7 +123,7 @@ class Withdrawal extends Component {
 
       render() {
           return (
-              <div>
+              <div className="display-page">
                 <div className="deposit-form">
                   <Form.Group controlId="exampleForm.ControlSelect1">
                       <Form.Label className="text2-payin">Select Card</Form.Label>
@@ -150,19 +150,17 @@ class Withdrawal extends Component {
                       <button className="deposit-button"> Withdrawal </button>
                   </form>
               </div>
-              <div className="display-page">
-                  <div className="display-form">
-                  <Form.Group controlId="exampleForm.ControlSelect1">
-                      <Form.Label className="text-payin">Withdrawal</Form.Label>
-                          {
-                              this.state.listPayOuts.map((payOut, index) => (
-                                      <option key={index}>
-                                          {"Withdrawal ID: " + payOut.id + "  /   Withdrawal wallet: " + payOut.wallet_id + "   /   Amount: " + payOut.amount/100}
-                                      </option>
-                                  ))
-                          }
-                  </Form.Group>
-                  </div>
+              <div className="display-form">
+              <Form.Group controlId="exampleForm.ControlSelect1">
+                  <Form.Label className="text-payin">Withdrawal</Form.Label>
+                      {
+                          this.state.listPayOuts.map((payOut, index) => (
+                                  <option key={index}>
+                                      {"Withdrawal ID: " + payOut.id + "  /   Withdrawal wallet: " + payOut.wallet_id + "   /   Amount: " + payOut.amount/100}
+                                  </option>
+                              ))
+                      }
+              </Form.Group>
               </div>
           </div>
       );

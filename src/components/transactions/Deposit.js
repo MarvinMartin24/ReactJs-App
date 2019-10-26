@@ -111,7 +111,7 @@ class Deposit extends Component {
 
       render() {
           return (
-                <div>
+                <div className="display-page">
                   <div className="deposit-form">
                     <Form.Group controlId="exampleForm.ControlSelect1">
                         <Form.Label className="text2-payin">Select Card</Form.Label>
@@ -138,19 +138,17 @@ class Deposit extends Component {
                         <button className="deposit-button"> Deposit </button>
                     </form>
                 </div>
-                <div className="display-page">
-                    <div className="display-form">
-                    <Form.Group controlId="exampleForm.ControlSelect1">
-                        <Form.Label className="text-payin">Deposit</Form.Label>
-                            {
-                                this.state.listPayIns.map((payIn, index) => (
-                                        <option key={index}>
-                                            {"Deposit ID: " + payIn.id + "  /   Deposit wallet: " + payIn.wallet_id + "   /   Amount: " + payIn.amount/100}
-                                        </option>
-                                    ))
-                            }
-                    </Form.Group>
-                    </div>
+                <div className="display-form">
+                <Form.Group controlId="exampleForm.ControlSelect1">
+                    <Form.Label className="text-payin">Deposit</Form.Label>
+                        {
+                            this.state.listPayIns.map((payIn, index) => (
+                                    <option key={index}>
+                                        {"Deposit ID: " + payIn.id + "  /   Deposit wallet: " + payIn.wallet_id + "   /   Amount: " + payIn.amount/100}
+                                    </option>
+                                ))
+                        }
+                </Form.Group>
                 </div>
             </div>
         );
