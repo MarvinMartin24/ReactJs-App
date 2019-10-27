@@ -116,14 +116,15 @@ class Send extends Component {
                 </form>
                 <div className="display-form">
                     <Form.Group controlId="exampleForm.ControlSelect1">
-                        <Form.Label className="text-transfers">Transfers</Form.Label> {
-                            this.state.listTransfers.map((transfer, index) => (
-                                <option key={index}>
-                                    {"Transfer ID: " + transfer.id + "  /   Debited wallet ID: " + transfer.debited_wallet_id + "   /   Credited wallet ID: " +
-                                    transfer.credited_wallet_id + "   /   Amount: " + transfer.amount/100}
-                                </option>
-                            ))
-                        }
+                        <Form.Label 
+                            className="text-transfers">Transfers
+                        </Form.Label> 
+                        {this.state.listTransfers.map((transfer, index) => (
+                            <option key={index}>
+                                {"Transfer ID: " + transfer.id + "  /   Debited wallet ID: " + transfer.debited_wallet_id + "   /   Credited wallet ID: " +
+                                transfer.credited_wallet_id + "   /   Amount: " + transfer.amount/100}
+                            </option>
+                        ))}
                     </Form.Group>
                 </div>
             </div>
