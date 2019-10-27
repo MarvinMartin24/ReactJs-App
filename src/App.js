@@ -44,37 +44,30 @@ class App extends Component {
       }
 
 
-  render() {
-
-      if (this.state.view === 'NavBar')
-      {
-          return(
-              <div className="root-container">
-                  <BrowserRouter>
-                      <NavBar/>
-                      <Route exact path="/SignUp" component ={SignUp}/>
-                      <Route exact path="/LogIn"  render={(props) => <LogIn {...props} view={this.onChangeView} />} />
-                  </BrowserRouter>
-              </div>
-
-          )
-      }
-
-      if (this.state.view === 'NavBar2'){
-
-          return(
-              <div className="root-container">
-                  <BrowserRouter>
-                    <NavBar2/>
-                      <Route exact path="/Modify" component ={Modify}/>
-                      <Route exact path="/Transaction" component ={Transaction}/>
-                      <Route exact path="/LogOut" render={(props) => <LogOut {...props} view={this.onChangeView} />} />
-                  </BrowserRouter>
-              </div>
-
-          )
-      }
-
+    render() {
+        if (this.state.view === 'NavBar') {
+            return(
+                <div className="root-container">
+                    <BrowserRouter>
+                        <NavBar/>
+                        <Route exact path="/SignUp" component ={SignUp}/>
+                        <Route exact path="/LogIn"  render={(props) => <LogIn {...props} view={this.onChangeView} />} />
+                    </BrowserRouter>
+                </div>
+            );
+        }
+        if (this.state.view === 'NavBar2') {
+            return(
+                <div className="root-container">
+                    <BrowserRouter>
+                        <NavBar2/>
+                        <Route exact path="/Modify" component ={Modify}/>
+                        <Route exact path="/Transaction" component ={Transaction}/>
+                        <Route exact path="/LogOut" render={(props) => <LogOut {...props} view={this.onChangeView} />} />
+                    </BrowserRouter>
+                </div>
+            );
+        }
     }
 }
 
