@@ -119,12 +119,12 @@ class Deposit extends Component {
             <div className="display-page">
                 <div className="deposit-form">
                     <Form.Group controlId="exampleForm.ControlSelect1">
-                        <Form.Label 
+                        <Form.Label
                             className="text2-payin">Select Card
                         </Form.Label>
-                        <Form.Control 
-                            as="select" 
-                            onChange={this.handleSelectCard}> 
+                        <Form.Control
+                            as="select"
+                            onChange={this.handleSelectCard}>
                             {this.state.listCard.map((card, index) => (
                                 <option key={index}>
                                     {card.brand + " xxxxxxxx" + card.last_4 + "    (Expired date: " + card.expired_at + ")"}
@@ -147,9 +147,9 @@ class Deposit extends Component {
                 </div>
                 <div className="display-form">
                     <Form.Group controlId="exampleForm.ControlSelect1">
-                        <Form.Label 
+                        <Form.Label
                             className="text-payin">Deposit
-                        </Form.Label> 
+                        </Form.Label>
                         {this.state.listPayIns.map((payIn, index) => (
                             <option key={index}>
                                 {"Deposit ID: " + payIn.id + "  /   Deposit wallet: " + payIn.wallet_id + "   /   Amount: " + payIn.amount/100}

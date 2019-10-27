@@ -54,7 +54,7 @@ class LogIn extends Component {
             localStorage.setItem('view', JSON.stringify('NavBar2'));
             this.props.view();
 
-            this.props.history.push('/Home');
+            this.props.history.push('/home');
         }
         else {
             alert(response.error);

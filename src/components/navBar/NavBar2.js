@@ -17,10 +17,10 @@ class NavBar2 extends Component {
                     />
                 </header>
                 <ul>
-                    <li><Link to="/Home"> Home </Link></li>
-                    <li><Link to="Modify"> Modify </Link></li>
-                    <li><Link to="/Transaction"> Transaction </Link></li>
-                    <li><Link to="/LogOut"> Log Out </Link></li>
+                    <li><Link to="/home"> Home </Link></li>
+                    <li><Link to="/modify"> Modify </Link></li>
+                    <li><Link to="/transaction"> Transaction </Link></li>
+                    <li><Link to="/log-out"> Log Out </Link></li>
                 </ul>
             </div>
         );

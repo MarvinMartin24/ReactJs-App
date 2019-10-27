@@ -14,7 +14,7 @@ class LogOut extends Component {
 
     stay = (event) => {
         event.preventDefault();
-        this.props.history.push('/Home');
+        this.props.history.push('/home');
     }
 
 

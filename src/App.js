@@ -50,8 +50,8 @@ class App extends Component {
                 <div className="root-container">
                     <BrowserRouter>
                         <NavBar />
-                        <Route exact path="/SignUp" component ={SignUp} />
-                        <Route exact path="/LogIn"  render={(props) => <LogIn {...props} view={this.onChangeView} />} />
+                        <Route exact path="/sign-up" component ={SignUp} />
+                        <Route exact path="/log-in"  render={(props) => <LogIn {...props} view={this.onChangeView} />} />
                     </BrowserRouter>
                 </div>
             );
@@ -61,9 +61,9 @@ class App extends Component {
                 <div className="root-container">
                     <BrowserRouter>
                         <NavBar2 />
-                        <Route exact path="/Modify" component ={Modify} />
-                        <Route exact path="/Transaction" component ={Transaction} />
-                        <Route exact path="/LogOut" render={(props) => <LogOut {...props} view={this.onChangeView} />} />
+                        <Route exact path="/modify" component ={Modify} />
+                        <Route exact path="/transaction" component ={Transaction} />
+                        <Route exact path="/log-out" render={(props) => <LogOut {...props} view={this.onChangeView} />} />
                     </BrowserRouter>
                 </div>
             );

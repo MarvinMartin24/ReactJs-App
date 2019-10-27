@@ -42,7 +42,7 @@ class SignUp extends Component {
 
             alert('Account Created !')
 
-            this.props.history.push('/LogIn');
+            this.props.history.push('/log-in');
         }
         else {
 

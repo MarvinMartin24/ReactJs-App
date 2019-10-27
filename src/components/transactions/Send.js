@@ -116,9 +116,9 @@ class Send extends Component {
                 </form>
                 <div className="display-form">
                     <Form.Group controlId="exampleForm.ControlSelect1">
-                        <Form.Label 
+                        <Form.Label
                             className="text-transfers">Transfers
-                        </Form.Label> 
+                        </Form.Label>
                         {this.state.listTransfers.map((transfer, index) => (
                             <option key={index}>
                                 {"Transfer ID: " + transfer.id + "  /   Debited wallet ID: " + transfer.debited_wallet_id + "   /   Credited wallet ID: " +

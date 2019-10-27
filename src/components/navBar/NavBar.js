@@ -19,8 +19,8 @@ class NavBar extends Component {
                 </header>
                 <ul>
                     <li><Link to="/"> Welcome </Link></li>
-                    <li><Link to="/LogIn"> Log In </Link></li>
-                    <li><Link to="/SignUp"> Sign Up  </Link></li>
+                    <li><Link to="/log-in"> Log In </Link></li>
+                    <li><Link to="/sign-up"> Sign Up  </Link></li>
                 </ul>
             </div>
         );
