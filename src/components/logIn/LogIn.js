@@ -62,7 +62,6 @@ class LogIn extends Component {
     }
 
     render() {
-
         return (
             <div className="log-in-form">
                 <form onSubmit={this.login}>

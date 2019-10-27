@@ -95,40 +95,38 @@ class Deposit extends Component {
      }
 
 
-      deposit = (event) => {
+    deposit = (event) => {
 
-          event.preventDefault();
-          if (this.isCardValid()) {
-              api.addPayIn(this.state.payIn);
-              api.depositWallet(this.props.wallet.id, this.state.payIn.amount);
-              this.props.onChange()
-              this.setState({
-                  listPayIns: api.getPayIns(this.props.wallet.id),
-                  payIn: {
-                      id: api.getNewIdPayIn(),
-                      wallet_id: this.state.payIn.wallet_id,
-                      amount: this.state.payIn.amount
-                  }
-              });
-              alert("Deposit done !");
-          }
+        event.preventDefault();
+        if (this.isCardValid()) {
+            api.addPayIn(this.state.payIn);
+            api.depositWallet(this.props.wallet.id, this.state.payIn.amount);
+            this.props.onChange()
+            this.setState({
+                listPayIns: api.getPayIns(this.props.wallet.id),
+                payIn: {
+                    id: api.getNewIdPayIn(),
+                    wallet_id: this.state.payIn.wallet_id,
+                    amount: this.state.payIn.amount
+                }
+            });
+            alert("Deposit done !");
+        }
+    }
 
-      }
-
-      render() {
-          return (
-                <div className="display-page">
-                  <div className="deposit-form">
+    render() {
+        return (
+            <div className="display-page">
+                <div className="deposit-form">
                     <Form.Group controlId="exampleForm.ControlSelect1">
                         <Form.Label className="text2-payin">Select Card</Form.Label>
-                            <Form.Control as="select" onChange={this.handleSelectCard}>
-                                {
-                                    this.state.listCard.map((card, index) => (
-                                          <option key={index}>
-                                              {card.brand + " xxxxxxxx" + card.last_4 + "    (Expired date: " + card.expired_at + ")"}
-                                          </option>
-                                      ))
-                                }
+                            <Form.Control as="select" onChange={this.handleSelectCard}> {
+                                this.state.listCard.map((card, index) => (
+                                    <option key={index}>
+                                        {card.brand + " xxxxxxxx" + card.last_4 + "    (Expired date: " + card.expired_at + ")"}
+                                    </option>
+                                ))
+                            }
                             </Form.Control>
                     </Form.Group>
                     <form onSubmit={this.deposit}>
@@ -145,16 +143,16 @@ class Deposit extends Component {
                     </form>
                 </div>
                 <div className="display-form">
-                <Form.Group controlId="exampleForm.ControlSelect1">
-                    <Form.Label className="text-payin">Deposit</Form.Label>
-                        {
-                            this.state.listPayIns.map((payIn, index) => (
-                                    <option key={index}>
-                                        {"Deposit ID: " + payIn.id + "  /   Deposit wallet: " + payIn.wallet_id + "   /   Amount: " + payIn.amount/100}
-                                    </option>
-                                ))
-                        }
-                </Form.Group>
+                    <Form.Group controlId="exampleForm.ControlSelect1">
+                        <Form.Label 
+                            className="text-payin">Deposit
+                        </Form.Label> 
+                        {this.state.listPayIns.map((payIn, index) => (
+                            <option key={index}>
+                                {"Deposit ID: " + payIn.id + "  /   Deposit wallet: " + payIn.wallet_id + "   /   Amount: " + payIn.amount/100}
+                            </option>
+                        ))}
+                    </Form.Group>
                 </div>
             </div>
         );

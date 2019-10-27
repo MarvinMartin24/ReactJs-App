@@ -24,12 +24,11 @@ class LogOut extends Component {
                 <br/>
                     <div className="text-logout"> Are you sure to log out ?
                 <br/>
-                    <br/>
+                <br/>
                         <button className="logout-yes-button" onClick={this.exit}>yes</button>
                         <button className="logout-no-button" onClick={this.stay}>no</button>
-                </div>
+                    </div>
             </div>
-
         );
     }
 }

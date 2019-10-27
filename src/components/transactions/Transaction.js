@@ -34,20 +34,32 @@ class Transaction extends Component {
             wallet:  api.getWallet(this.state.wallet.user_id)
         });
     }
+
     render() {
         return (
             <div>
                 <br/>
-                <button className="transaction-first-button" onClick={this.changeSection} name="Send"> Send </button>
-                <button className="transaction-button" onClick={this.changeSection} name="Deposit"> Deposit </button>
-                <button className="transaction-button" onClick={this.changeSection} name="Withdrawal"> Withdrawal </button>
+                <button 
+                    className="transaction-first-button" 
+                    onClick={this.changeSection} 
+                    name="Send"> Send 
+                </button>
+                <button 
+                    className="transaction-button" 
+                    onClick={this.changeSection} 
+                    name="Deposit"> Deposit 
+                </button>
+                <button 
+                    className="transaction-button" 
+                    onClick={this.changeSection} 
+                    name="Withdrawal"> Withdrawal 
+                </button>
                     <br/>
                     <br/>
                 <div className="solde">
                     Solde: {this.state.wallet.balance/100 + "$"}
                 </div>
                     <br/>
-
                 {this.state.answer === "Send" && (
                     <Send
                         walletId={this.state.wallet.id}

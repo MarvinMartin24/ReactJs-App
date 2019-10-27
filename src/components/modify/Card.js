@@ -48,7 +48,6 @@ class Card extends Component {
     }
 
     render() {
-
         return (
             <div className="modify-form">
                 <form onSubmit={this.submitModifyCard}>
@@ -82,8 +81,8 @@ class Card extends Component {
                     <button className="modify-button"> Modify </button>
               </form>
             </div>
-      );
-  }
+        );
+    }
 }
 
 export default Card;

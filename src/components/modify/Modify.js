@@ -112,7 +112,6 @@ class Modify extends Component {
     }
 
     render() {
-
         return (
             <div className="modify-page">
                 <div className="modify-form">
@@ -157,7 +156,7 @@ class Modify extends Component {
                         <button className="modify-button">Modify</button>
                     </form>
                 </div>
-                { this.displayCards() }
+                {this.displayCards()}
                 <div className="modify-form">
                     <form onSubmit={this.submitAddCard}>
                         <label>Card Number:</label>

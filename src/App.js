@@ -23,7 +23,7 @@ class App extends Component {
     }
 
 
-    componentDidMount(){
+    componentDidMount() {
         const localView = JSON.parse(localStorage.getItem('view'));
 
         if (localView) {
@@ -49,8 +49,8 @@ class App extends Component {
             return(
                 <div className="root-container">
                     <BrowserRouter>
-                        <NavBar/>
-                        <Route exact path="/SignUp" component ={SignUp}/>
+                        <NavBar />
+                        <Route exact path="/SignUp" component ={SignUp} />
                         <Route exact path="/LogIn"  render={(props) => <LogIn {...props} view={this.onChangeView} />} />
                     </BrowserRouter>
                 </div>
@@ -60,9 +60,9 @@ class App extends Component {
             return(
                 <div className="root-container">
                     <BrowserRouter>
-                        <NavBar2/>
-                        <Route exact path="/Modify" component ={Modify}/>
-                        <Route exact path="/Transaction" component ={Transaction}/>
+                        <NavBar2 />
+                        <Route exact path="/Modify" component ={Modify} />
+                        <Route exact path="/Transaction" component ={Transaction} />
                         <Route exact path="/LogOut" render={(props) => <LogOut {...props} view={this.onChangeView} />} />
                     </BrowserRouter>
                 </div>

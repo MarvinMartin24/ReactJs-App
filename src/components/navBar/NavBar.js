@@ -8,7 +8,6 @@ import './NavBar.css';
 class NavBar extends Component {
 
     render() {
-
         return (
             <div className="container">
                 <header className="App-header">
