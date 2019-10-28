@@ -18,7 +18,7 @@ class Modify extends Component {
                 id:'',
                 last_4:'',
                 brand:'',
-                expired_at:'2019-10-28' 
+                expired_at:'2019-10-28'
             }
         };
     }
@@ -217,7 +217,7 @@ class Modify extends Component {
                         <select className="modify-input" onChange={this.handleChangeCardAddBrand}>
                             <option defaultValue="visa">Visa</option>
                             <option value="master_card">Master Card</option>
-                            <option value="american_express">American Expresso</option>
+                            <option value="american_express">American Express</option>
                             <option value="union_pay">Union Pay</option>
                             <option value="jcb">JCB</option>
                         </select>

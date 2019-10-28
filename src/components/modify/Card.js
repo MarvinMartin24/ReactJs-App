@@ -87,7 +87,7 @@ class Card extends Component {
                     <select value={this.state.brand} className="modify-input" onChange={this.handleChangeCardBrand}>
                         <option value="visa">Visa</option>
                         <option value="master_card">Master Card</option>
-                        <option value="american_express">American Expresso</option>
+                        <option value="american_express">American Express</option>
                         <option value="union_pay">Union Pay</option>
                         <option value="jcb">JCB</option>
                     </select>
