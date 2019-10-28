@@ -1,3 +1,6 @@
+### Marvin Martin & Duy Nguyen (ING4 Gr02)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
