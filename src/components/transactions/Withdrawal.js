@@ -82,7 +82,7 @@ class Withdrawal extends Component {
                     }
                     else {
                         if(mm === this.getTodayDate()[1]){
-                            if(dd > this.getTodayDate()[2]){
+                            if(dd >= this.getTodayDate()[2]){
                                 return(true);
                             }
                         }
@@ -129,10 +129,10 @@ class Withdrawal extends Component {
             <div className="display-page">
                 <div className="deposit-form">
                     <Form.Group controlId="exampleForm.ControlSelect1">
-                        <Form.Label 
+                        <Form.Label
                             className="text2-payin">Select Card
                         </Form.Label>
-                        <Form.Control as="select" onChange={this.handleSelectCard}> 
+                        <Form.Control as="select" onChange={this.handleSelectCard}>
                         {this.state.listCard.map((card, index) => (
                                 <option key={index}>
                                     {card.brand + " xxxxxxxx" + card.last_4 + "    (Expired date: " + card.expired_at + ")"}
@@ -155,9 +155,9 @@ class Withdrawal extends Component {
                 </div>
                 <div className="display-form">
                 <Form.Group controlId="exampleForm.ControlSelect1">
-                    <Form.Label 
+                    <Form.Label
                         className="text-payin">Withdrawal
-                    </Form.Label> 
+                    </Form.Label>
                     {this.state.listPayOuts.map((payOut, index) => (
                         <option key={index}>
                             {"Withdrawal ID: " + payOut.id + "  /   Withdrawal wallet: " + payOut.wallet_id + "   /   Amount: " + payOut.amount/100}

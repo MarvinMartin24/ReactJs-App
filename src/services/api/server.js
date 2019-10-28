@@ -165,6 +165,11 @@ export function getCards(id) {
     return object;
 }
 
+export function getNewIdCard(){
+    const idCard = cards.length + 1;
+    return idCard.toString();
+}
+
 //----------- TRANSFERS ---------//
 
 export function addTransfert(newTransfert){

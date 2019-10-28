@@ -41,6 +41,16 @@ class Card extends Component {
         });
     }
 
+    handleChangeCardBrand = (event) => {
+        event.preventDefault();
+
+        this.setState({
+            brand: event.target.value
+        });
+        console.log(this.state);
+
+    }
+
     submitModifyCard = (event) => {
         event.preventDefault();
         const newCard = this.state;
@@ -55,25 +65,25 @@ class Card extends Component {
                     <input
                         name="last_4"
                         className="modify-input"
-                        type="text"
+                        type="number"
                         value={this.state.last_4}
                         onChange={this.handleChangeCard}
                     />
                         <br/>
                     <label> Brand: </label>
-                    <input
-                        name="brand"
-                        className="modify-input"
-                        type="text"
-                        value={this.state.brand}
-                        onChange={this.handleChangeCard}
-                    />
+                    <select value={this.state.brand} className="modify-input" onChange={this.handleChangeCardBrand}>
+                        <option value="visa">Visa</option>
+                        <option value="master_card">Master Card</option>
+                        <option value="american_express">American Expresso</option>
+                        <option value="union_pay">Union Pay</option>
+                        <option value="jcb">JCB</option>
+                    </select>
                         <br/>
                     <label> Expired Date: </label>
                     <input
                         name="expired_at"
                         className="modify-input"
-                        type="text"
+                        type="date"
                         value={this.state.expired_at}
                         onChange={this.handleChangeCard}
                     />

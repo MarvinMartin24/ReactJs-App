@@ -42,6 +42,10 @@ export function getCards(id){
     return server.getCards(id);
 }
 
+export function getNewIdCard(){
+    return server.getNewIdCard();
+}
+
 //----------- WALLETS ---------------//
 
 export function updateWallets(walletIdSender, walletIdReceiver, amount){

@@ -30,7 +30,10 @@ class Modify extends Component {
             listCard: api.getCards(this.state.user.id),
             newCard: {
                 user_id: this.state.user.id,
-                id: Math.floor(Math.random() * 1000),
+                id: api.getNewIdCard(),
+                last_4:'0000',
+                brand:'visa',
+                expired_at:'2019-10-28'
             }
         });
     }
@@ -60,6 +63,22 @@ class Modify extends Component {
         this.setState({
             formValues
         });
+    }
+
+    handleChangeCardAddBrand = (event) => {
+        event.preventDefault();
+
+        this.setState({
+            newCard: {
+                user_id: this.state.newCard.user_id,
+                id: this.state.newCard.id,
+                last_4:this.state.newCard.last_4,
+                brand: event.target.value,
+                expired_at: this.state.newCard.expired_at
+            }
+        });
+        console.log(this.state);
+
     }
 
     remove(card) {
@@ -163,23 +182,26 @@ class Modify extends Component {
                         <input
                             name="last_4"
                             className="modify-input"
-                            type="text"
+                            type="number"
+                            value={this.state.newCard.last_4}
                             onChange={this.handleChangeAddCard}
                         />
                             <br/>
                         <label>Brand:</label>
-                        <input
-                            name="brand"
-                            className="modify-input"
-                            type="text"
-                            onChange={this.handleChangeAddCard}
-                        />
+                        <select className="modify-input" onChange={this.handleChangeCardAddBrand}>
+                            <option defaultValue="visa">Visa</option>
+                            <option value="master_card">Master Card</option>
+                            <option value="american_express">American Expresso</option>
+                            <option value="union_pay">Union Pay</option>
+                            <option value="jcb">JCB</option>
+                        </select>
                             <br/>
                         <label>Expired Date:</label>
                         <input
                             name="expired_at"
                             className="modify-input"
-                            type="text"
+                            type="date"
+                            value={this.state.newCard.expired_at}
                             onChange={this.handleChangeAddCard}
                         />
                             <br/>

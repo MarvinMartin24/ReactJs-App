@@ -82,7 +82,7 @@ class Deposit extends Component {
                     }
                     else {
                         if(mm === this.getTodayDate()[1]){
-                            if(dd > this.getTodayDate()[2]){
+                            if(dd >= this.getTodayDate()[2]){
                                 return(true);
                             }
                         }
