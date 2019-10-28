@@ -54,7 +54,6 @@ class SignUp extends Component {
 
                 alert('Wrong values, We do not accept empty cell !')
             }
-
         }
         else {
 

@@ -18,7 +18,7 @@ class Modify extends Component {
                 id:'',
                 last_4:'',
                 brand:'',
-                expired_at:''
+                expired_at:'2019-10-28' 
             }
         };
     }
@@ -50,6 +50,12 @@ class Modify extends Component {
             formValues
         });
 
+    }
+
+    isUserValid = (user) => {
+        if (user.first_name !== '' && user.last_name !== '' && user.password !== '' && user.email !== '')
+            return true;
+        return false;
     }
 
     handleChangeAddCard = (event) => {
@@ -114,12 +120,21 @@ class Modify extends Component {
         event.preventDefault();
 
         var newUser = this.state.user;
-        api.updateUser(newUser);
 
-        this.setState({
-            user: api.getUser(this.state.user.id),
-        });
-        alert('User Modified !');
+        if (this.isUserValid(newUser)){
+
+            api.updateUser(newUser);
+
+            this.setState({
+                user: api.getUser(this.state.user.id),
+            });
+            alert('User Modified !');
+        }
+        else {
+
+            alert('Wrong values, We do not accept empty cell !')
+        }
+
     }
 
     submitAddCard = (event) => {
