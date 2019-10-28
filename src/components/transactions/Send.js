@@ -13,12 +13,13 @@ class Send extends Component {
             transfer: {
                 id: api.getNewIdTransfer(),
                 debited_wallet_id: this.props.walletId,
-                credited_wallet_id:'',
+                credited_wallet_id: api.getWalletIdFromEmail(''),
                 amount: 0,
             },
             listTransfers: api.getTransfers(this.props.walletId)
         };
     }
+
 
     handleChangeAmount = (event) => {
         event.preventDefault();
@@ -27,7 +28,7 @@ class Send extends Component {
             transfer: {
                 id: this.state.transfer.id,
                 debited_wallet_id: this.props.walletId,
-                credited_wallet_id: api.getWalletIdFromEmail(event.target.value),
+                credited_wallet_id: this.state.transfer.credited_wallet_id,
                 amount: parseInt(event.target.value)*100,
             }
         });
@@ -67,7 +68,13 @@ class Send extends Component {
 
     isAmountValid = () => {
         if (this.state.transfer.amount <= this.props.solde){
-            return(true);
+            if(this.state.transfer.amount > 0){
+                return(true);
+            }
+            else{
+                alert('Impossible Amount !');
+                return(false);
+            }
         }
         else{
             alert('Your solde is too low');
@@ -84,7 +91,13 @@ class Send extends Component {
             api.updateWallets(this.state.transfer.debited_wallet_id, this.state.transfer.credited_wallet_id, this.state.transfer.amount);
             this.props.onChange()
             this.setState({
-                listTransfers: api.getTransfers(this.props.walletId),
+                transfer: {
+                    id: api.getNewIdTransfer(),
+                    debited_wallet_id: this.props.walletId,
+                    credited_wallet_id: this.state.transfer.credited_wallet_id,
+                    amount: this.state.transfer.amount,
+                },
+                listTransfers: api.getTransfers(this.props.walletId)
             });
 
             alert('Transaction done !');
@@ -92,6 +105,7 @@ class Send extends Component {
     }
 
     render() {
+        console.log(this.state);
         return (
             <div className="display-page">
                 <form className="send-form" onSubmit={this.transfer}>

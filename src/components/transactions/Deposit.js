@@ -98,7 +98,7 @@ class Deposit extends Component {
     deposit = (event) => {
 
         event.preventDefault();
-        if (this.isCardValid()) {
+        if (this.state.payIn.amount > 0 && this.isCardValid()) {
             api.addPayIn(this.state.payIn);
             api.depositWallet(this.props.wallet.id, this.state.payIn.amount);
             this.props.onChange()
@@ -111,6 +111,9 @@ class Deposit extends Component {
                 }
             });
             alert("Deposit done !");
+        }
+        else{
+            alert("Amount Impossible !");
         }
     }
 
@@ -138,6 +141,7 @@ class Deposit extends Component {
                             id="amount"
                             className="deposit-input"
                             type="number"
+                            defaultValue="0"
                             onChange={this.handleChangeAmount}
                         />
                         <br/>

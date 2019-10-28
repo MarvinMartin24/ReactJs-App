@@ -17,7 +17,7 @@ class Withdrawal extends Component {
             payOut: {
                 id: api.getNewIdPayOut(),
                 wallet_id:'',
-                amount:''
+                amount:0
             }
         };
     }
@@ -107,7 +107,7 @@ class Withdrawal extends Component {
     withdrawal = (event) => {
 
         event.preventDefault();
-        if ((this.isCardValid() === true) && (this.isAmountValid() === true)){
+        if ((this.state.payOut.amount > 0) && (this.isCardValid() === true) && (this.isAmountValid() === true)){
 
             api.addPayOut(this.state.payOut);
             api.withdrawalWallet(this.props.wallet.id, this.state.payOut.amount);
@@ -121,6 +121,9 @@ class Withdrawal extends Component {
                 }
             });
             alert('Withdrawal done !');
+        }
+        else{
+            alert("Amount Impossible !");
         }
     }
 
@@ -146,6 +149,7 @@ class Withdrawal extends Component {
                             id="amount"
                             className="deposit-input"
                             type="number"
+                            defaultValue="0"
                             onChange={this.handleChangeAmount}
                         />
                         <br/>
