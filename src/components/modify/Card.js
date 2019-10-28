@@ -47,8 +47,6 @@ class Card extends Component {
         this.setState({
             brand: event.target.value
         });
-        console.log(this.state);
-
     }
 
     submitModifyCard = (event) => {

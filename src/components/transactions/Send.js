@@ -92,7 +92,6 @@ class Send extends Component {
     }
 
     render() {
-        console.log(this.state.transfer);
         return (
             <div className="display-page">
                 <form className="send-form" onSubmit={this.transfer}>

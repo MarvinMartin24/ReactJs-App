@@ -77,8 +77,6 @@ class Modify extends Component {
                 expired_at: this.state.newCard.expired_at
             }
         });
-        console.log(this.state);
-
     }
 
     remove(card) {

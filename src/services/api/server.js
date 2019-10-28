@@ -177,7 +177,6 @@ export function addTransfert(newTransfert){
 }
 export function getNewIdTransfer(){
     const idTransfer = transfers.length + 1;
-    console.log(idTransfer.toString());
     return idTransfer.toString();
 }
 
