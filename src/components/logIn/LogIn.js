@@ -69,7 +69,7 @@ class LogIn extends Component {
                     <input
                         id="email"
                         className="log-in-input"
-                        type="text"
+                        type="email"
                         value={this.state.email}
                         onChange={this.handleChange}
                     />

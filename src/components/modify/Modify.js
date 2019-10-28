@@ -79,6 +79,10 @@ class Modify extends Component {
         });
     }
 
+    getlength = (number) => {
+        return number.toString().length;
+    }
+
     remove(card) {
 
         api.removeCard(card.id);
@@ -115,17 +119,26 @@ class Modify extends Component {
         this.setState({
             user: api.getUser(this.state.user.id),
         });
+        alert('User Modified !');
     }
 
     submitAddCard = (event) => {
         event.preventDefault();
 
-        var newCard = this.state.newCard;
-        api.addCard(newCard);
+        if (this.getlength(this.state.newCard.last_4) === 4){
+            var newCard = this.state.newCard;
+            api.addCard(newCard);
 
-        this.setState({
-            listCard: api.getCards(this.state.user.id),
-        });
+            this.setState({
+                listCard: api.getCards(this.state.user.id),
+            });
+            alert('Card Added');
+
+        }
+        else {
+            alert('The card number must be composed of 4 digits');
+        }
+
     }
 
     render() {
@@ -156,7 +169,7 @@ class Modify extends Component {
                         <input
                             name="email"
                             className="modify-input"
-                            type="text"
+                            type="email"
                             value={this.state.user.email}
                             onChange={this.handleChangeUser}
                         />

@@ -107,22 +107,25 @@ class Withdrawal extends Component {
     withdrawal = (event) => {
 
         event.preventDefault();
-        if ((this.state.payOut.amount > 0) && (this.isCardValid() === true) && (this.isAmountValid() === true)){
+        if ((this.state.payOut.amount > 0)){
 
-            api.addPayOut(this.state.payOut);
-            api.withdrawalWallet(this.props.wallet.id, this.state.payOut.amount);
-            this.props.onChange()
-            this.setState({
-                listPayOuts: api.getPayOuts(this.props.wallet.id),
-                payOut: {
-                    id: api.getNewIdPayOut(),
-                    wallet_id: this.state.payOut.wallet_id,
-                    amount: this.state.payOut.amount
-                }
-            });
-            alert('Withdrawal done !');
+            if ((this.isCardValid() === true) && (this.isAmountValid() === true)){
+
+                api.addPayOut(this.state.payOut);
+                api.withdrawalWallet(this.props.wallet.id, this.state.payOut.amount);
+                this.props.onChange()
+                this.setState({
+                    listPayOuts: api.getPayOuts(this.props.wallet.id),
+                    payOut: {
+                        id: api.getNewIdPayOut(),
+                        wallet_id: this.state.payOut.wallet_id,
+                        amount: this.state.payOut.amount
+                    }
+                });
+                alert('Withdrawal done !');
+            }
         }
-        else{
+        else {
             alert("Amount Impossible !");
         }
     }

@@ -17,6 +17,12 @@ class SignUp extends Component {
         };
     }
 
+    isValid = (user) => {
+        if (user.first_name !== '' && user.last_name !== '' && user.password !== '' && user.email !== '')
+            return true;
+        return false;
+    }
+
     handleChange = (event) => {
 
         var input = event.target;
@@ -35,14 +41,20 @@ class SignUp extends Component {
         var available = api.isEmailAvailable(signUpUser.email);
 
         if (available) {
+            if (this.isValid(this.state)){
+                signUpUser = api.createUser(signUpUser)
 
-            signUpUser = api.createUser(signUpUser)
+                localStorage.setItem('user_local', JSON.stringify(signUpUser));
 
-            localStorage.setItem('user_local', JSON.stringify(signUpUser));
+                alert('Account Created !')
 
-            alert('Account Created !')
+                this.props.history.push('/log-in');
+            }
+            else {
 
-            this.props.history.push('/log-in');
+                alert('Wrong values, We do not accept empty cell !')
+            }
+
         }
         else {
 
@@ -75,7 +87,7 @@ class SignUp extends Component {
                     <input
                         id="email"
                         className={"sign-up-input"}
-                        type="text"
+                        type="email"
                         onChange={this.handleChange}
                     />
                         <br/>

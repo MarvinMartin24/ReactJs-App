@@ -120,7 +120,7 @@ class Send extends Component {
                     <input
                         id="credited_wallet_id"
                         className="send-input"
-                        type="text"
+                        type="email"
                         onChange={this.handleChangeCredit}
                     />
                     <br/>

@@ -49,10 +49,25 @@ class Card extends Component {
         });
     }
 
+    getlength = (number) => {
+        return number.toString().length;
+    }
+
     submitModifyCard = (event) => {
         event.preventDefault();
+
         const newCard = this.state;
-        api.updateCard(newCard);
+
+        if (this.getlength(newCard.last_4) === 4){
+            api.updateCard(newCard);
+            alert('Card Modified');
+
+        }
+        else {
+            alert('The card number must be composed of 4 digits');
+        }
+
+
     }
 
     render() {

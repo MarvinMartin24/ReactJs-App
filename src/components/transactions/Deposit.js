@@ -98,19 +98,21 @@ class Deposit extends Component {
     deposit = (event) => {
 
         event.preventDefault();
-        if (this.state.payIn.amount > 0 && this.isCardValid()) {
-            api.addPayIn(this.state.payIn);
-            api.depositWallet(this.props.wallet.id, this.state.payIn.amount);
-            this.props.onChange()
-            this.setState({
-                listPayIns: api.getPayIns(this.props.wallet.id),
-                payIn: {
-                    id: api.getNewIdPayIn(),
-                    wallet_id: this.state.payIn.wallet_id,
-                    amount: this.state.payIn.amount
-                }
-            });
-            alert("Deposit done !");
+        if (this.state.payIn.amount > 0) {
+            if (this.isCardValid()) {
+                api.addPayIn(this.state.payIn);
+                api.depositWallet(this.props.wallet.id, this.state.payIn.amount);
+                this.props.onChange()
+                this.setState({
+                    listPayIns: api.getPayIns(this.props.wallet.id),
+                    payIn: {
+                        id: api.getNewIdPayIn(),
+                        wallet_id: this.state.payIn.wallet_id,
+                        amount: this.state.payIn.amount
+                    }
+                });
+                alert("Deposit done !");
+            }
         }
         else{
             alert("Amount Impossible !");
