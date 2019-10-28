@@ -120,7 +120,6 @@ export function updateWallets(walletIdSender, walletIdReceiver, amount) {
 
     wallets[indexSender].balance -=  amount;
     wallets[indexReceiver].balance +=  amount;
-
 }
 
 export function getWalletIdFromEmail(email){
@@ -134,7 +133,6 @@ export function getWalletIdFromEmail(email){
     else {
         return failure('Wrong email')
     }
-
 }
 
 //----------- CARDS -------------//
